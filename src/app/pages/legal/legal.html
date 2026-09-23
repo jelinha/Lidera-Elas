@@ -1,0 +1,24 @@
+<main class="legal-page">
+  <section class="legal-card">
+    <p class="legal-kicker">Informações legais</p>
+    <h1>{{ conteudo.titulo }}</h1>
+    <p class="legal-description">{{ conteudo.descricao }}</p>
+
+    <div class="legal-content">
+      @for (paragrafo of conteudo.paragrafos; track paragrafo) {
+        <p>{{ paragrafo }}</p>
+      }
+    </div>
+
+    @if (conteudo.linkExterno) {
+      <a class="legal-external-link" [href]="conteudo.linkExterno" target="_blank" rel="noopener noreferrer">
+        Acessar texto oficial da Lei
+      </a>
+    }
+
+    <div class="legal-links">
+      <a routerLink="/legal/privacidade">Política de Privacidade</a>
+      <a routerLink="/legal/lgpd">LGPD</a>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,477 @@
+.navbar {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--border);
+    background: var(--nav-bg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar:hover {
+    border-bottom-color: var(--violet);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-icon {
+    width: 26px;
+    height: 26px;
+    display: inline-block;
+    border-radius: 50%;
+    background: var(--violet-bg);
+    position: relative;
+}
+
+.logo-icon::before {
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    top: 6px;
+    left: 8px;
+    border: 2px solid var(--violet-bright);
+    border-bottom: 0;
+    border-radius: 50% 50% 0 0;
+}
+
+.logo-icon::after {
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 4px;
+    left: 8px;
+    bottom: 5px;
+    background: var(--orange);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    transition: color 0.2s;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: var(--text-main);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.menu-toggle {
+    display: inline-grid;
+    width: 38px;
+    height: 36px;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-main);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.menu-toggle:hover {
+    border-color: var(--violet);
+    color: var(--violet-bright);
+}
+
+.logout-nav-button {
+    padding: 10px 16px;
+    border: 1px solid var(--violet);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-main);
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.logout-nav-button:hover {
+    background: var(--violet);
+    color: #ffffff;
+}
+
+
+.toggle-cont {
+    position: relative;
+    z-index: 10;
+    width: fit-content;
+    height: 36px; 
+    border-radius: 9999px;
+}
+
+.toggle-cont .toggle-input {
+    display: none;
+}
+
+.toggle-cont .toggle-label {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    padding: 4px;
+    width: 64px;
+    height: 100%;
+    background-color: #1a192b;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    box-sizing: border-box;
+    transition: all 0.4s ease-in-out;
+}
+
+.toggle-cont .toggle-label .cont-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 26px;
+    height: 26px;
+  
+    background-image: radial-gradient(circle at 50% 0%, var(--violet), var(--violet-bright));
+    border-radius: 50%;
+    box-shadow: inset 0 -2px 4px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.3);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-image 0.4s;
+    overflow: clip;
+}
+
+.cont-icon .sparkle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: calc(var(--width) * 1px);
+    aspect-ratio: 1;
+    background-color: #fff;
+    border-radius: 50%;
+    transform-origin: 50% 50%;
+    rotate: calc(1deg * var(--deg));
+    transform: translate(-50%, -50%);
+    animation: sparkle calc(100s / var(--duration)) linear calc(0s / var(--duration)) infinite;
+}
+
+@keyframes sparkle {
+    to {
+        width: calc(var(--width) * 0.5px);
+        transform: translate(1200%, -50%);
+    }
+}
+
+.cont-icon .icon {
+    font-size: 13px;
+    color: #ffffff;
+    z-index: 2;
+}
+
+.toggle-input:checked + .toggle-label {
+    background-color: #e8e4dc; 
+    border-color: #d6d1c4;
+}
+
+.toggle-input:checked + .toggle-label .cont-icon {
+
+    background-image: radial-gradient(circle at 50% 0%, #ffd000, var(--orange));
+   
+    transform: translateX(28px) rotate(-360deg);
+}
+
+.toggle-input:checked + .toggle-label .cont-icon .sparkle {
+    background-color: #fff;
+    animation: sparkle calc(100s / var(--duration)) linear calc(10s / var(--duration)) infinite;
+}
+
+
+.btn-magic {
+    --border_radius: 8px;
+    --transtion: 0.3s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 8px 16px;
+    background-color: transparent;
+    border: none;
+    border-radius: var(--border_radius);
+    transform: scale(calc(1 + (var(--active, 0) * 0.05)));
+    transition: transform var(--transtion);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-magic::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+  
+    background-color: #1a192b; 
+    border-radius: var(--border_radius);
+    box-shadow: inset 0 0.5px rgba(255,255,255,0.2), 
+                inset 0 -1px 2px 0 rgba(0,0,0,0.5),
+                0px 4px 10px -4px hsla(0 0% 0% / calc(1 - var(--active, 0))),
+                0 0 0 calc(var(--active, 0) * 0.2rem) var(--violet-bright);
+    transition: all var(--transtion);
+    z-index: 0;
+}
+
+.btn-magic::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+  
+    background-color: var(--violet);
+    opacity: var(--active, 0);
+    border-radius: var(--border_radius);
+    transition: opacity var(--transtion);
+    z-index: 2;
+}
+
+.btn-magic:is(:hover, :focus-visible) {
+    --active: 1;
+}
+
+.btn-magic:active {
+    transform: scale(1);
+}
+
+.btn-magic .dots_border {
+    --size_border: calc(100% + 2px);
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: var(--size_border);
+    height: var(--size_border);
+    background-color: transparent;
+    border-radius: var(--border_radius);
+    z-index: -10;
+}
+
+.btn-magic .dots_border::before {
+    content: "";
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: left;
+    width: 100%;
+    height: 2rem;
+    background-color: var(--violet-bright);
+    mask: linear-gradient(transparent 0%, white 120%);
+    animation: rotate 2s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes rotate {
+    to { transform: rotate(360deg); }
+}
+
+.btn-magic .sparkle {
+    position: relative;
+    z-index: 10;
+    width: 1.25rem; 
+}
+
+.btn-magic .sparkle .path {
+    fill: #ffffff;
+    stroke: #ffffff;
+    transform-origin: center;
+}
+
+.btn-magic:is(:hover, :focus) .sparkle .path {
+    animation: path 1.5s linear 0.5s infinite;
+}
+
+.btn-magic .sparkle .path:nth-child(1) { --scale_path_1: 1.2; }
+.btn-magic .sparkle .path:nth-child(2) { --scale_path_2: 1.2; }
+.btn-magic .sparkle .path:nth-child(3) { --scale_path_3: 1.2; }
+
+@keyframes path {
+    0%, 34%, 71%, 100% { transform: scale(1); }
+    17% { transform: scale(var(--scale_path_1, 1)); }
+    49% { transform: scale(var(--scale_path_2, 1)); }
+    83% { transform: scale(var(--scale_path_3, 1)); }
+}
+
+.btn-magic .text_button {
+    position: relative;
+    z-index: 10;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+
+body.light-mode .btn-magic::before {
+    background-color: #ffffff;
+    box-shadow: inset 0 0.5px rgba(255,255,255,1), 
+                inset 0 -1px 2px 0 rgba(0,0,0,0.1),
+                0 0 0 calc(var(--active, 0) * 0.2rem) var(--violet-bright);
+}
+body.light-mode .btn-magic .text_button,
+body.light-mode .btn-magic .sparkle .path {
+  
+    color: #1c1917;
+    fill: #1c1917;
+    stroke: #1c1917;
+    transition: color 0.3s, fill 0.3s, stroke 0.3s;
+}
+
+body.light-mode .btn-magic:hover .text_button,
+body.light-mode .btn-magic:hover .sparkle .path {
+   
+    color: #ffffff;
+    fill: #ffffff;
+    stroke: #ffffff;
+}
+
+
+
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 16px 24px;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .btn-magic {
+        padding: 10px 14px;
+    }
+
+    .btn-magic .text_button {
+        font-size: 13px;
+    }
+
+    .toggle-cont {
+        width: 56px;
+    }
+
+    .toggle-cont .toggle-label {
+        width: 56px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 12px 16px;
+    }
+
+    .nav-container {
+        gap: 0;
+    }
+
+    .logo {
+        font-size: 18px;
+        gap: 6px;
+    }
+
+    .logo-icon {
+        width: 22px;
+        height: 22px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-actions {
+        gap: 8px;
+    }
+
+    .btn-magic {
+        padding: 8px 12px;
+    }
+
+    .btn-magic .text_button {
+        font-size: 12px;
+    }
+
+    .btn-magic .sparkle {
+        width: 0.9rem;
+    }
+
+    .toggle-cont {
+        width: 48px;
+        height: 32px;
+    }
+
+    .toggle-cont .toggle-label {
+        width: 48px;
+        padding: 3px;
+    }
+
+    .toggle-cont .toggle-label .cont-icon {
+        width: 22px;
+        height: 22px;
+    }
+
+    .toggle-input:checked + .toggle-label .cont-icon {
+        transform: translateX(20px) rotate(-360deg);
+    }
+}
+
+.navbar {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--border);
+    background: var(--nav-bg); 
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+body.light-mode .btn-magic-alt::before {
+    background-color: #ffffff;
+    box-shadow: inset 0 0.5px rgba(255,255,255,1), 
+                inset 0 -1px 2px 0 rgba(0,0,0,0.1),
+                0 0 0 calc(var(--active, 0) * 0.2rem) var(--violet-bright);
+}
+
+body.light-mode .btn-magic-alt .text_button {
+    color: #1c1917;
+    transition: color 0.3s;
+}
+
+body.light-mode .btn-magic-alt:hover .text_button {
+    color: #ffffff;
+}

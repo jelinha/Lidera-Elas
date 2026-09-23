@@ -1,0 +1,53 @@
+<main class="auth-page">
+    <div class="auth-shell">
+        <section class="auth-intro" aria-labelledby="login-title">
+            <a routerLink="/" class="auth-brand" aria-label="Lidera Elas - voltar para início">
+                <span class="logo-icon"></span>
+                <span>Lidera<span class="text-violet">Elas</span></span>
+            </a>
+
+            <span class="section-tag">SUA JORNADA CONTINUA AQUI</span>
+            <h1 id="login-title">Volte a ocupar o espaço que é seu.</h1>
+            <p>Continue a desenvolver o seu potencial, encontre novas oportunidades e conecte-se com mulheres que também estão a construir um futuro global.</p>
+
+            <div class="auth-stat" aria-label="Mais de 2.400 jovens já fazem parte">
+                <strong>2.400+</strong>
+                <span>jovens a construir as suas trajetórias globais</span>
+            </div>
+        </section>
+
+        <section class="auth-form-box" aria-labelledby="form-title">
+            <a routerLink="/" class="back-link">&larr; Voltar para início</a>
+            <span class="section-tag">BEM-VINDA DE VOLTA</span>
+            <h2 id="form-title">Entre na sua conta</h2>
+            <p class="form-intro">A sua próxima conquista começa onde parou.</p>
+
+            <form class="auth-form" (submit)="fazerLogin($event)">
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" autocomplete="email" required>
+
+                <div class="label-row">
+                    <label for="senha">Senha</label>
+                    <a href="#recuperar-senha">Esqueci minha senha</a>
+                </div>
+                <div class="password-input">
+                    <input id="senha" name="senha" [type]="mostrarSenha ? 'text' : 'password'" autocomplete="current-password" required>
+                    <i class="fa-solid" [class.fa-eye]="!mostrarSenha" [class.fa-eye-slash]="mostrarSenha" role="button" tabindex="0" aria-label="Mostrar ou ocultar senha" (click)="toggleSenha()"></i>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="lembrar">
+                    <label for="lembrar">Lembrar de mim nas próximas vezes</label>
+                </div>
+
+                @if (loginInvalido) {
+                    <p class="login-error" role="alert">E-mail ou senha incorretos. Faça o seu cadastro.</p>
+                }
+
+                <button type="submit" class="btn-solid btn-full">Entrar na minha conta</button>
+            </form>
+
+            <p class="auth-footer">Ainda não faz parte? <a routerLink="/cadastro">Criar uma conta</a></p>
+        </section>
+    </div>
+</main>

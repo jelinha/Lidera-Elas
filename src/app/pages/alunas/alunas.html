@@ -1,0 +1,72 @@
+<main class="aluna-page">
+    <section class="aluna-shell">
+        <a routerLink="/dashboard" class="back-link">&larr; Voltar para o painel</a>
+
+        <header class="profile-header">
+            <div class="avatar" aria-hidden="true">BS</div>
+            <div class="profile-heading">
+                <span class="section-tag">PERFIL DA ALUNA</span>
+                <h1>{{ alunaSelecionada.nome }}</h1>
+                <div class="profile-meta">
+                    <span>{{ alunaSelecionada.email }}</span>
+                    <span>{{ alunaSelecionada.nivelEscolaridade }}</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="aluna-layout">
+            <section class="main-column">
+                <article class="detail-card objective-card">
+                    <span class="section-tag">OBJETIVO DA MENTORIA</span>
+                    <h2>O que a Beatriz procura</h2>
+                    <p>{{ alunaSelecionada.objetivo }}</p>
+                </article>
+
+                <article class="detail-card history-card">
+                    <div class="card-heading">
+                        <div>
+                            <span class="section-tag">ACOMPANHAMENTO</span>
+                            <h2>Histórico de Mentorias</h2>
+                        </div>
+                        <span class="session-count">{{ alunaSelecionada.historicoMentorias.length }} sessões</span>
+                    </div>
+
+                    <div class="history-list">
+                        @for (sessao of alunaSelecionada.historicoMentorias; track sessao.data + sessao.tema) {
+                            <article class="history-item">
+                                <div class="history-marker" aria-hidden="true"></div>
+                                <div>
+                                    <time>{{ sessao.data }}</time>
+                                    <h3>{{ sessao.tema }}</h3>
+                                    <p>{{ sessao.notas }}</p>
+                                </div>
+                            </article>
+                        }
+                    </div>
+                </article>
+            </section>
+
+            <aside class="sidebar-column">
+                <article class="detail-card progress-card">
+                    <span class="section-tag">TRILHA ATUAL</span>
+                    <h2>{{ alunaSelecionada.statusTrilha }}</h2>
+                    <div class="progress-summary">
+                        <strong>{{ alunaSelecionada.progresso }}</strong>
+                        <span>concluído</span>
+                    </div>
+                    <div class="progress-track" aria-label="Progresso da trilha">
+                        <span [style.width]="alunaSelecionada.progresso"></span>
+                    </div>
+                </article>
+
+                <article class="detail-card meeting-card">
+                    <span class="section-tag">PRÓXIMO ENCONTRO</span>
+                    <h2>{{ alunaSelecionada.proximoEncontro.tema }}</h2>
+                    <p class="meeting-date">{{ alunaSelecionada.proximoEncontro.data }}</p>
+                    <p class="meeting-time">{{ alunaSelecionada.proximoEncontro.hora }}</p>
+                    <button type="button" class="action-button">Marcar Nova Sessão</button>
+                </article>
+            </aside>
+        </div>
+    </section>
+</main>

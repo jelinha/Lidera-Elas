@@ -1,0 +1,115 @@
+.news-page {
+    min-height: calc(100vh - 76px);
+    padding: 56px clamp(22px, 6vw, 88px) 80px;
+    background: var(--bg-page);
+    color: var(--text-main);
+}
+
+.news-shell {
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 42px;
+    color: var(--violet-bright);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.section-tag {
+    color: var(--orange);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+h1 {
+    margin: 12px 0 10px;
+    color: var(--text-main);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    line-height: 1.05;
+}
+
+.intro {
+    max-width: 620px;
+    margin: 0 0 40px;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+}
+
+.news-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 250px;
+    padding: 26px;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    background: var(--bg-card);
+    box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+.news-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.news-tag {
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: var(--violet-bg);
+    color: var(--violet-bright);
+    font-size: 0.7rem;
+    font-weight: 800;
+}
+
+.news-card time {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
+
+.news-card h2 {
+    margin: 26px 0 10px;
+    color: var(--text-main);
+    font-size: 1.25rem;
+    line-height: 1.25;
+}
+
+.news-card p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.55;
+}
+
+.read-button {
+    width: 100%;
+    margin-top: auto;
+    padding: 11px 14px;
+    border: 1px solid var(--violet);
+    border-radius: 9px;
+    background: transparent;
+    color: var(--violet-bright);
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+}
+
+.read-button:hover {
+    background: var(--violet);
+    color: #ffffff;
+}
+
+@media (max-width: 700px) {
+    .news-page {
+        padding: 36px 20px 56px;
+    }
+}

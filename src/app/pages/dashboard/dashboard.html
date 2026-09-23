@@ -1,0 +1,464 @@
+<main class="dashboard-page">
+    
+    <div class="dashboard-layout">
+     
+        <div class="sidebar-overlay" [class.visivel]="sidebarAberta" (click)="fecharSidebar()" aria-hidden="true"></div>
+        <aside class="dashboard-sidebar" [class.aberta]="sidebarAberta" aria-label="Navegação do painel">
+            <div class="sidebar-brand">
+                <span>LE</span><strong>LideraElas</strong>
+                <button type="button" class="sidebar-close" (click)="fecharSidebar()" aria-label="Fechar menu">&times;</button>
+            </div>
+
+            @if (tipoUsuario === 'jovem-lider') {
+                <nav class="dashboard-nav">
+                    <button type="button" [class.active]="abaAtiva === 'visao-geral'" (click)="selecionarAba('visao-geral')">Visão Geral</button>
+                    <button type="button" [class.active]="abaAtiva === 'catalogo-mentoras'" (click)="selecionarAba('catalogo-mentoras')">Banco de Mentoras</button>
+                    <button type="button" [class.active]="abaAtiva === 'minhas-solicitacoes'" (click)="selecionarAba('minhas-solicitacoes')">Minhas Solicitações</button>
+                    <button type="button" [class.active]="abaAtiva === 'minha-mentoria'" [class.desbloqueada]="mentoriaDesbloqueada" (click)="selecionarAba('minha-mentoria')">Minha Mentoria</button>
+                    <button type="button" class="news-nav-button" [class.active]="abaAtiva === 'novidades'" (click)="selecionarAba('novidades')">Notícias <span aria-hidden="true">&#8594;</span></button>
+                </nav>
+            } 
+            
+            @else {
+                <nav class="dashboard-nav">
+                    <button type="button" [class.active]="abaAtiva === 'visao-geral'" (click)="selecionarAba('visao-geral')">Solicitações</button>
+                    <button type="button" [class.active]="abaAtiva === 'historico-alunas'" (click)="selecionarAba('historico-alunas')">Histórico de Alunas</button>
+                    <button type="button" [class.active]="abaAtiva === 'agenda'" (click)="selecionarAba('agenda')">Agenda e Materiais</button>
+                    <button type="button" [class.active]="abaAtiva === 'rede-mentoras'" (click)="selecionarAba('rede-mentoras')">Rede de Mentoras</button>
+                </nav>
+            }
+
+            <button type="button" class="sidebar-logout" (click)="sair()">Sair <span aria-hidden="true">&#8594;</span></button>
+        </aside>
+
+ 
+        <div class="dashboard-main">
+                                        
+            <header class="dashboard-header" style="margin-bottom: 24px;">
+                <div>
+                    <span class="section-tag">ÁREA RESTRITA</span>
+                    <h1>{{ tipoUsuario === 'jovem-lider' ? 'Painel da Jovem Líder' : 'Painel da Mentora' }}</h1>
+                </div>
+            </header>
+
+            @if (tipoUsuario === 'mentora') {
+                <section class="availability-panel" aria-label="Disponibilidade para novas alunas">
+                    <div>
+                        <span class="section-tag">STATUS DA AGENDA</span>
+                        <strong>{{ aceitandoAlunas ? 'Aceitando novas alunas' : 'Agenda Lotada' }}</strong>
+                        <p>{{ aceitandoAlunas ? 'O seu perfil está disponível para novos pedidos de mentoria.' : 'Novos pedidos ficam pausados até voltar a ter disponibilidade.' }}</p>
+                    </div>
+                    <button type="button" class="availability-toggle" [class.indisponivel]="!aceitandoAlunas" (click)="toggleDisponibilidade()" [attr.aria-pressed]="aceitandoAlunas" [attr.aria-label]="aceitandoAlunas ? 'Desativar disponibilidade' : 'Ativar disponibilidade'">
+                        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                        <span>{{ aceitandoAlunas ? 'Disponível' : 'Pausada' }}</span>
+                    </button>
+                </section>
+            }
+
+            @if (mensagemFeedback) {
+                <div class="success-message" role="status">{{ mensagemFeedback }}</div>
+            }
+
+          
+            @if (tipoUsuario === 'jovem-lider') {
+                
+                
+                @if (abaAtiva === 'visao-geral') {
+                    <section class="content-section">
+                        <div class="overview-grid">
+                            <article class="overview-card">
+                                <span class="overview-icon">01</span>
+                                <h3>Seu Percurso de Trilhas</h3>
+                                <p>Tens {{ trilhasDisponiveis.length }} recomendações para desenvolver o teu potencial.</p>
+                                <button type="button" class="text-action" (click)="selecionarAba('trilhas')">Acessar trilhas <span aria-hidden="true">&#8594;</span></button>
+                            </article>
+                            <article class="overview-card">
+                                <span class="overview-icon">02</span>
+                                <h3>Rede de Apoio</h3>
+                                @if (minhaMentora) {
+                                    <p>Enviou uma solicitação para <strong>{{ minhaMentora.nome }}</strong>. Aguarde a resposta.</p>
+                                } @else {
+                                    <p>Você ainda não tem uma mentora. Encontra uma profissional no nosso banco.</p>
+                                    <button type="button" class="text-action" (click)="selecionarAba('catalogo-mentoras')">Abrir banco de mentoras <span aria-hidden="true">&#8594;</span></button>
+                                }
+                            </article>
+                        </div>
+                        <div class="progress-and-tasks-grid">
+                            <article class="impact-card">
+                                <div class="impact-card-heading">
+                                    <div>
+                                        <span class="section-tag">PROGRESSO</span>
+                                        <h2>O Teu Impacto</h2>
+                                    </div>
+                                    <span class="level-badge">{{ meuProgresso.nivel }}</span>
+                                </div>
+                                <div class="xp-summary">
+                                    <strong>{{ meuProgresso.xp }} XP</strong>
+                                    <span>{{ meuProgresso.proximoNivel }} XP para o próximo nível</span>
+                                </div>
+                                <div class="xp-track gamification-bar" role="progressbar" [attr.aria-valuenow]="progressoXp" aria-valuemin="0" aria-valuemax="100" [attr.aria-label]="progressoXp + '% do progresso para o próximo nível'">
+                                    <span [style.width.%]="progressoXp"></span>
+                                </div>
+                                <small class="xp-caption">{{ progressoXp }}% concluído</small>
+                            </article>
+
+                            <article class="next-steps-card">
+                                <div class="impact-card-heading">
+                                    <div>
+                                        <span class="section-tag">A SEGUIR</span>
+                                        <h2>Próximos Passos</h2>
+                                    </div>
+                                    <span class="steps-count">{{ passosConcluidos.length }}/{{ proximosPassos.length }}</span>
+                                </div>
+                                <ul class="next-steps-list">
+                                    @for (passo of proximosPassos; track passo) {
+                                        <li [class.concluido]="passosConcluidos.includes(passo)">
+                                            <button type="button" class="step-check" (click)="alternarProximoPasso(passo)" [attr.aria-label]="passosConcluidos.includes(passo) ? 'Marcar como pendente' : 'Marcar como concluído'" [attr.aria-pressed]="passosConcluidos.includes(passo)">
+                                                @if (passosConcluidos.includes(passo)) { &#10003; }
+                                            </button>
+                                            <span>{{ passo }}</span>
+                                        </li>
+                                    }
+                                </ul>
+                            </article>
+                        </div>
+                    </section>
+                }
+
+                
+                @if (abaAtiva === 'novidades') {
+                    <section class="content-section news-feed-section">
+                        <div class="section-heading">
+                            <span class="section-tag">RADAR LIDERA ELAS</span>
+                            <h2>Notícias e oportunidades</h2>
+                            <p>Ideias, histórias e oportunidades para acompanhar o teu crescimento.</p>
+                        </div>
+                        <div class="news-feed">
+                            @for (noticia of novidades; track noticia.titulo) {
+                                <article class="news-article-card">
+                                    <div class="news-card-meta">
+                                        <span class="news-category">{{ noticia.tag }}</span>
+                                        <time>{{ noticia.data }}</time>
+                                    </div>
+                                    <h3>{{ noticia.titulo }}</h3>
+                                    <p>{{ noticia.resumo }}</p>
+                                    <a routerLink="/novidades" class="news-read-more">Ler mais <span aria-hidden="true">&#8594;</span></a>
+                                </article>
+                            }
+                        </div>
+                    </section>
+                }
+
+          
+                @if (abaAtiva === 'catalogo-mentoras') {
+                    <section class="content-section">
+                        <div class="section-heading">
+                            <span class="section-tag">BANCO DE MENTORAS</span>
+                            <h2>Encontre a sua guia</h2>
+                            <p>Analise os perfis e envie uma solicitação para a profissional que se alinha com o seu objetivo.</p>
+                        </div>
+                        <div class="mentors-catalog">
+                            @for (mentora of mentorasDisponiveis; track mentora.id) {
+                                <article class="mentor-catalog-card">
+                                    <div class="mentor-avatar">{{ mentora.iniciais }}</div>
+                                    <span class="category-tag">{{ mentora.especializacao }}</span>
+                                    <h3>{{ mentora.nome }}</h3>
+                                    <p class="mentor-role">{{ mentora.cargo }} &bull; {{ mentora.empresa }}</p>
+                                    <p class="mentor-bio" style="margin-top: 12px;">{{ mentora.bio }}</p>
+                                    
+                                    @if (temSolicitacaoAtiva(mentora.id)) {
+                                        <button type="button" class="course-button" style="background: transparent; border: 1px solid var(--orange); color: var(--orange);" disabled>Solicitação Enviada</button>
+                                    } @else {
+                                        <button type="button" class="course-button" (click)="enviarSolicitacaoMentoria(mentora)">Enviar Solicitação</button>
+                                    }
+                                </article>
+                            }
+                        </div>
+                    </section>
+                }
+
+                
+                @if (abaAtiva === 'minhas-solicitacoes') {
+                    <section class="content-section">
+                        <div class="section-heading">
+                            <span class="section-tag">ACOMPANHAMENTO</span>
+                            <h2>Minhas Solicitações</h2>
+                            <p>Acompanhe aqui o estado dos seus pedidos de mentoria.</p>
+                        </div>
+                        @if (minhasSolicitacoes.length) {
+                            <div class="requests-grid">
+                                @for (solicitacao of minhasSolicitacoes; track solicitacao.id) {
+                                    <article class="request-card">
+                                        <div class="request-card-heading">
+                                            <div class="mentor-avatar">{{ solicitacao.iniciais }}</div>
+                                            <span class="status-badge" [class.status-pendente]="solicitacao.status === 'pendente'" [class.status-aceito]="solicitacao.status === 'aceito'" [class.status-recusado]="solicitacao.status === 'recusado'" [class.badge-pending]="solicitacao.status === 'pendente'" [class.badge-rejected]="solicitacao.status === 'recusado'">{{ textoStatus(solicitacao.status) }}</span>
+                                        </div>
+                                        <h3>{{ solicitacao.nome }}</h3>
+                                        <p>{{ solicitacao.especializacao }} &bull; {{ solicitacao.empresa }}</p>
+                                        @if (solicitacao.status === 'pendente') {
+                                            <button type="button" class="cancel-button" (click)="cancelarSolicitacao(solicitacao.id)">Cancelar Solicitação</button>
+                                        }
+                                    </article>
+                                }
+                            </div>
+                        } @else {
+                            <div class="empty-state">
+                                <span class="overview-icon">+</span>
+                                <h3>Você ainda não tem solicitações</h3>
+                                <p>Procure uma mentora e envie o seu primeiro pedido de acompanhamento.</p>
+                                <button type="button" class="course-button" (click)="selecionarAba('catalogo-mentoras')">Abrir Banco de Mentoras</button>
+                            </div>
+                        }
+                    </section>
+                }
+
+            
+                @if (abaAtiva === 'minha-mentoria') {
+                    <section class="content-section">
+                        <div class="section-heading">
+                            <span class="section-tag">ACOMPANHAMENTO INDIVIDUAL</span>
+                            <h2>Minha Mentoria</h2>
+                        </div>
+                        @if (!mentoriaDesbloqueada) {
+                            <div class="empty-state">
+                                <span class="overview-icon">LE</span>
+                                <h3>Ainda não tens uma mentora ativa</h3>
+                                <p>Acompanhe os seus pedidos na aba Minhas Solicitações.</p>
+                                <button type="button" class="course-button" (click)="selecionarAba('catalogo-mentoras')">Ir para o Banco de Mentoras</button>
+                            </div>
+                        } @else {
+                            <article class="aluna-card assigned-mentor-card">
+                                <div class="avatar">{{ minhaMentora?.iniciais }}</div>
+                                <div class="assigned-mentor-content">
+                                    <span class="section-tag mentor-label">MENTORA CONFIRMADA</span>
+                                    <h3>{{ minhaMentora?.nome }}</h3>
+                                    <p class="mentor-role">{{ minhaMentora?.cargo }} &bull; {{ minhaMentora?.empresa }}</p>
+                                    <p class="mentor-bio">{{ minhaMentora?.bio }}</p>
+                                </div>
+                            </article>
+                            <div class="mentorship-tools-grid">
+                                <article class="mentorship-tool-card">
+                                    <div class="tool-heading">
+                                        <span class="overview-icon">01</span>
+                                        <div>
+                                            <span class="section-tag">ACOMPANHAMENTO</span>
+                                            <h3>Quadro de Missões</h3>
+                                        </div>
+                                    </div>
+                                    <ul class="mentorship-missions">
+                                        @for (missao of missoesMentoria; track missao) {
+                                            <li [class.concluida]="missoesMentoriaConcluidas.includes(missao)">
+                                                <button type="button" class="mission-checkbox" (click)="alternarMissaoMentoria(missao)" [attr.aria-label]="missoesMentoriaConcluidas.includes(missao) ? 'Marcar missão como pendente' : 'Marcar missão como concluída'" [attr.aria-pressed]="missoesMentoriaConcluidas.includes(missao)">
+                                                    @if (missoesMentoriaConcluidas.includes(missao)) { &#10003; }
+                                                </button>
+                                                <span>{{ missao }}</span>
+                                            </li>
+                                        }
+                                    </ul>
+                                </article>
+                                <article class="mentorship-tool-card next-meeting-card">
+                                    <div class="tool-heading">
+                                        <span class="overview-icon">02</span>
+                                        <div>
+                                            <span class="section-tag">AGENDA</span>
+                                            <h3>Próxima Reunião</h3>
+                                        </div>
+                                    </div>
+                                    @if (minhaMentora?.reuniao) {
+                                        <p class="meeting-confirmed">{{ minhaMentora?.reuniao?.data }}</p>
+                                        <p>{{ minhaMentora?.reuniao?.hora }} &bull; {{ minhaMentora?.reuniao?.pauta }}</p>
+                                    } @else {
+                                        <p class="meeting-empty">Ainda não tens uma reunião marcada com a tua mentora.</p>
+                                        <button type="button" class="course-button" (click)="solicitarAgendamento()">Solicitar Agendamento</button>
+                                    }
+                                </article>
+                            </div>
+                        }
+                    </section>
+                }
+
+              
+                @if (abaAtiva === 'trilhas') {
+                    <section class="content-section">
+                        <div class="section-heading">
+                            <span class="section-tag">DESENVOLVIMENTO</span>
+                            <h2>Trilhas Recomendadas</h2>
+                        </div>
+                        <div class="courses-grid">
+                            @for (trilha of trilhasDisponiveis; track trilha.titulo) {
+                                <article class="curso-card">
+                                    <div class="curso-card-top">
+                                        <span class="category-tag">{{ trilha.categoria }}</span>
+                                        <span class="course-status">{{ trilha.status }}</span>
+                                    </div>
+                                    <h3>{{ trilha.titulo }}</h3>
+                                    <p class="course-institution">{{ trilha.instituicao }}</p>
+                                    <a class="course-button" [routerLink]="['/trilhas', trilha.slug]">Acessar Trilha</a>
+                                </article>
+                            }
+                        </div>
+                    </section>
+                }
+            }
+
+          
+            @if (tipoUsuario === 'mentora') {
+               
+                @if (abaAtiva === 'visao-geral') {
+                    <section class="content-section">
+                        <div class="metrics-grid" aria-label="Métricas de impacto">
+                            <article class="metric-card">
+                                <span class="metric-label">HORAS DOADAS</span>
+                                <strong>{{ metricas.horasDoadas }}</strong>
+                                <small>horas de mentoria</small>
+                            </article>
+                            <article class="metric-card">
+                                <span class="metric-label">ALUNAS IMPACTADAS</span>
+                                <strong>{{ metricas.alunasImpactadas }}</strong>
+                                <small>jovens acompanhadas</small>
+                            </article>
+                            <article class="metric-card">
+                                <span class="metric-label">AVALIAÇÃO</span>
+                                <strong>{{ metricas.avaliacao }}</strong>
+                                <small>feedback da comunidade</small>
+                            </article>
+                        </div>
+                        <div class="section-heading">
+                            <span class="section-tag">NOVOS CONVITES</span>
+                            <h2>Pedidos de Mentoria Pendentes</h2>
+                            <p>Jovens líderes que visualizaram o seu perfil e desejam o seu acompanhamento.</p>
+                        </div>
+                        <div class="mentorship-grid">
+                            @for (pedido of pedidosMentoria; track pedido.nome) {
+                                @if (pedido.status === 'pendente') {
+                                    <article class="mentorship-card">
+                                        <div>
+                                            <h3>{{ pedido.nome }}</h3>
+                                            <p>{{ pedido.foco }}</p>
+                                        </div>
+                                        <span class="request-date">{{ pedido.data }}</span>
+                                        <div class="request-actions">
+                                            <button type="button" class="accept-button" (click)="aceitarPedido(pedido)">Aceitar Solicitação</button>
+                                            <button type="button" class="decline-button" (click)="iniciarRecusa(pedido)">Recusar</button>
+                                        </div>
+                                        @if (pedidoEmRecusa === pedido) {
+                                            <div class="decline-form">
+                                                <label for="motivo-recusa">Qual o motivo da recusa?</label>
+                                                <select id="motivo-recusa" [(ngModel)]="motivoRecusa">
+                                                    <option value="" disabled>Selecione um motivo</option>
+                                                    <option value="agenda-lotada">Agenda lotada</option>
+                                                    <option value="fora-da-area">Fora da minha área de expertise</option>
+                                                    <option value="outro">Outro</option>
+                                                </select>
+                                                <div class="decline-form-actions">
+                                                    <button type="button" class="cancel-decline-button" (click)="cancelarRecusa()">Voltar</button>
+                                                    <button type="button" class="confirm-decline-button" [disabled]="!motivoRecusa" (click)="confirmarRecusa()">Confirmar Recusa</button>
+                                                </div>
+                                            </div>
+                                        }
+                                    </article>
+                                }
+                            }
+                        </div>
+                    </section>
+                }
+
+                @if (abaAtiva === 'historico-alunas') {
+                    <section class="content-section">
+                        <div class="section-heading">
+                            <span class="section-tag">ACOMPANHAMENTO ATIVO</span>
+                            <h2>Histórico de Alunas</h2>
+                        </div>
+                        <div class="mentor-card-grid">
+                            @for (aluna of minhasAlunas; track aluna.id) {
+                                <article class="aluna-card">
+                                    <div class="student-card-heading">
+                                        <div>
+                                            <h3>{{ aluna.nome }}</h3>
+                                            <p>{{ aluna.status }}</p>
+                                        </div>
+                                        <button type="button" class="details-button" (click)="alternarDetalhesAluna(aluna.id)" [attr.aria-expanded]="alunaExpandidaId === aluna.id">
+                                            {{ alunaExpandidaId === aluna.id ? 'Fechar detalhes' : 'Abrir diário' }}
+                                        </button>
+                                    </div>
+                                    <div class="progress-label">
+                                       <span>Progresso</span>
+                                        <strong>{{ aluna.progresso }}</strong>
+                                    </div>
+                                    <div class="progress-track" aria-hidden="true">
+                                        <span [style.width]="aluna.progresso"></span>
+                                    </div>
+                                    @if (alunaExpandidaId === aluna.id) {
+                                        <div class="student-details">
+                                            <label class="notes-field">
+                                                Notas de Sessão
+                                                <textarea [(ngModel)]="aluna.anotacoesPrivadas" (blur)="salvarAnotacoes(aluna)" rows="4" placeholder="Registe os pontos importantes da sessão..."></textarea>
+                                            </label>
+                                            <form class="mission-form" (ngSubmit)="adicionarMissao(aluna)">
+                                                <label [for]="'missao-' + aluna.id">Próximo passo</label>
+                                                <div class="mission-input-row">
+                                                    <input [id]="'missao-' + aluna.id" type="text" [name]="'missao-' + aluna.id" [(ngModel)]="novaMissao[aluna.id]" placeholder="Ex.: Refazer LinkedIn">
+                                                    <button type="submit" class="add-mission-button">Adicionar Missão</button>
+                                                </div>
+                                            </form>
+                                            @if (aluna.missoes?.length) {
+                                                <ul class="mission-list" aria-label="Missões da aluna">
+                                                    @for (missao of aluna.missoes; track $index) {
+                                                        <li><span aria-hidden="true">&#9744;</span>{{ missao }}</li>
+                                                    }
+                                                </ul>
+                                            } @else {
+                                                <p class="no-missions">Nenhuma missão adicionada.</p>
+                                            }
+                                        </div>
+                                    }
+                                    <a [routerLink]="['/alunas', aluna.id]" class="course-button" style="margin-top: 24px; text-decoration: none; text-align: center;">Analisar Perfil</a>
+                                </article>
+                            }
+                        </div>
+                    </section>
+                }
+
+                @if (abaAtiva === 'agenda') {
+                    <section class="content-section">
+                        <div class="section-heading">
+                            <span class="section-tag">ORGANIZAÇÃO</span>
+                            <h2>Encontros Marcados</h2>
+                        </div>
+                        <div class="mentor-card-grid">
+                            @for (encontro of encontrosMarcados; track encontro.titulo) {
+                                <article class="encontro-card">
+                                    <h3>{{ encontro.titulo }}</h3>
+                                    <p>{{ encontro.data }}</p>
+                                    <strong>{{ encontro.hora }}</strong>
+                                </article>
+                            }
+                        </div>
+                    </section>
+                }
+
+                @if (abaAtiva === 'rede-mentoras') {
+                    <section class="content-section">
+                        <div class="section-heading">
+                            <span class="section-tag">NETWORKING</span>
+                            <h2>Rede de Mentoras</h2>
+                            <p>Conheça outras profissionais da comunidade e amplie as suas conexões.</p>
+                        </div>
+                        <div class="mentor-card-grid">
+                            @for (mentora of redeMentoras; track mentora.nome) {
+                                <article class="aluna-card network-mentor-card">
+                                    <div class="mentor-avatar">{{ mentora.iniciais }}</div>
+                                    <h3>{{ mentora.nome }}</h3>
+                                    <p class="mentor-role">{{ mentora.cargo }}</p>
+                                    <p>{{ mentora.empresa }}</p>
+                                    <a class="course-button" [href]="mentora.linkedin" target="_blank" rel="noopener noreferrer">Conectar no LinkedIn</a>
+                                </article>
+                            }
+                        </div>
+                    </section>
+                }
+            }
+
+        </div>
+    </div>
+</main>

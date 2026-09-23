@@ -1,0 +1,22 @@
+<main class="news-page">
+    <section class="news-shell">
+        <a routerLink="/dashboard" class="back-link">&larr; Voltar para o painel</a>
+        <span class="section-tag">RADAR LIDERA ELAS</span>
+        <h1>Novidades da semana</h1>
+        <p class="intro">Oportunidades, histórias e movimentos de mulheres que estão a transformar a indústria.</p>
+
+        <div class="news-grid">
+            @for (novidade of novidades; track novidade.titulo) {
+                <article class="news-card">
+                    <div class="news-card-top">
+                        <span class="news-tag">{{ novidade.tag }}</span>
+                        <time>{{ novidade.data }}</time>
+                    </div>
+                    <h2>{{ novidade.titulo }}</h2>
+                    <p>{{ novidade.resumo }}</p>
+                    <button type="button" class="read-button">Ler novidade</button>
+                </article>
+            }
+        </div>
+    </section>
+</main>

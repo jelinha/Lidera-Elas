@@ -1,0 +1,113 @@
+<main class="auth-page">
+	<section class="auth-card" aria-labelledby="cadastro-title">
+		<a routerLink="/" class="back-link">&larr; Voltar para início</a>
+		<span class="section-tag">LIDERA ELAS</span>
+		<h1 id="cadastro-title">Faça parte da nossa comunidade</h1>
+		<p class="auth-intro">Escolha como você quer participar da nossa comunidade.</p>
+
+		<div class="role-options" role="radiogroup" aria-labelledby="tipo-cadastro-label">
+			<strong id="tipo-cadastro-label" class="role-title">Como você quer participar?</strong>
+			<label class="role-option">
+				<input type="radio" name="tipo-perfil" value="mentora" [checked]="tipoPerfil === 'mentora'" (change)="selecionarPerfil('mentora')">
+				<span>
+					<strong>Quero ser Mentora</strong>
+					<small>Partilhe a sua experiência e apoie outras mulheres.</small>
+				</span>
+			</label>
+			<label class="role-option">
+				<input type="radio" name="tipo-perfil" value="jovem-lider" [checked]="tipoPerfil === 'jovem-lider'" (change)="selecionarPerfil('jovem-lider')">
+				<span>
+					<strong>Quero ser Jovem Líder</strong>
+					<small>Receba mentoria e participe nas trilhas.</small>
+				</span>
+			</label>
+		</div>
+
+		<form class="auth-form" (submit)="fazerCadastro($event)">
+			<div class="input-group">
+				<label for="nome">Nome completo</label>
+				<input id="nome" name="nome" type="text" autocomplete="name" required>
+			</div>
+
+			<div class="input-group">
+				<label for="nascimento">Data de nascimento</label>
+				<input id="nascimento" name="nascimento" type="date" autocomplete="bday" required>
+			</div>
+
+			<div class="input-group">
+				<label for="email">E-mail</label>
+				<input id="email" name="email" type="email" autocomplete="email" required>
+			</div>
+
+			<div class="input-group">
+				<label for="senha">Senha</label>
+				<div class="password-input">
+					<input id="senha" name="senha" [type]="mostrarSenha ? 'text' : 'password'" autocomplete="new-password" required>
+					<i class="fa-solid" [class.fa-eye]="!mostrarSenha" [class.fa-eye-slash]="mostrarSenha" role="button" tabindex="0" aria-label="Mostrar ou ocultar senha" (click)="toggleSenha()"></i>
+				</div>
+			</div>
+
+			<div class="input-group">
+				<label for="confirmarSenha">Confirmar Senha</label>
+				<div class="password-input">
+					<input id="confirmarSenha" name="confirmarSenha" [type]="mostrarConfirmacao ? 'text' : 'password'" autocomplete="new-password" required>
+					<i class="fa-solid" [class.fa-eye]="!mostrarConfirmacao" [class.fa-eye-slash]="mostrarConfirmacao" role="button" tabindex="0" aria-label="Mostrar ou ocultar confirmação de senha" (click)="toggleConfirmacao()"></i>
+				</div>
+				@if (senhaInvalida) {
+					<span class="password-error" role="alert">As senhas não coincidem.</span>
+				}
+			</div>
+
+			@if (tipoPerfil === 'mentora') {
+				<div class="input-group">
+					<label for="area-atuacao">Área de Atuação</label>
+					<select id="area-atuacao" name="area-atuacao" required>
+						<option value="" disabled selected>Selecione uma área</option>
+						<option value="geopolitica">Geopolítica</option>
+						<option value="tecnologia">Tecnologia</option>
+						<option value="mercado-trabalho">Mercado de Trabalho</option>
+					</select>
+				</div>
+
+				<div class="input-group">
+					<label for="cargo-empresa">Cargo/Empresa Atual</label>
+					<input id="cargo-empresa" name="cargo-empresa" type="text" autocomplete="organization-title" required>
+				</div>
+
+				<div class="input-group">
+					<label for="linkedin">Link do LinkedIn</label>
+					<input id="linkedin" name="linkedin" type="url" autocomplete="url" placeholder="https://www.linkedin.com/in/..." required>
+				</div>
+			}
+
+			@if (tipoPerfil === 'jovem-lider') {
+				<div class="input-group">
+					<label for="escolaridade">Nível de Escolaridade</label>
+					<select id="escolaridade" name="escolaridade" required>
+						<option value="" disabled selected>Selecione o seu nível</option>
+						<option value="ensino-fundamental">Ensino Fundamental</option>
+						<option value="ensino-medio">Ensino Médio</option>
+						<option value="ensino-superior">Ensino Superior</option>
+						<option value="pos-graduacao">Pós-graduação</option>
+					</select>
+				</div>
+
+				<div class="input-group">
+					<label for="objetivo-mentoria">O que você procura nesta mentoria?</label>
+					<textarea id="objetivo-mentoria" name="objetivo-mentoria" rows="4" required></textarea>
+				</div>
+			}
+
+			<div class="checkbox-group" id="termos">
+				<input type="checkbox" id="termos" name="termos" required>
+				<label for="termos">
+					Li e concordo com a <a class="privacy-link" href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> e com o processamento dos meus dados conforme a <a class="legal-link" href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank" rel="noopener noreferrer">LGPD (Lei nº 13.709/2018)</a>.
+				</label>
+			</div>
+
+				<button type="submit" class="auth-button">Criar minha conta</button>
+			</form>
+
+		<p class="auth-footer">Já tem uma conta? <a routerLink="/login">Entrar</a></p>
+	</section>
+</main>

@@ -1,0 +1,234 @@
+.auth-page {
+    min-height: calc(100vh - 96px);
+    display: grid;
+    place-items: center;
+    padding: 48px 24px;
+    background: var(--bg-page);
+}
+
+.auth-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(380px, 480px);
+    width: min(100%, 1080px);
+    min-height: 620px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    background: var(--bg-card);
+    box-shadow: 0 20px 50px var(--shadow-color);
+}
+
+.auth-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px;
+    background: linear-gradient(145deg, #1f1035 0%, #4a216d 100%);
+    color: #ffffff;
+}
+
+.auth-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    align-self: flex-start;
+    margin-bottom: auto;
+    color: #ffffff;
+    font-size: 1.45rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.auth-brand .logo-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50% 50% 50% 0;
+    background: var(--orange);
+    transform: rotate(-45deg);
+}
+
+.auth-intro .section-tag {
+    margin-top: 80px;
+    color: #f5b27d;
+}
+
+.auth-intro h1 {
+    max-width: 480px;
+    margin: 14px 0 18px;
+    color: #ffffff;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.05;
+}
+
+.auth-intro > p {
+    max-width: 470px;
+    margin: 0;
+    color: #eadcf5;
+    line-height: 1.65;
+}
+
+.auth-stat {
+    display: grid;
+    gap: 2px;
+    margin-top: 48px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.auth-stat strong {
+    color: #ffffff;
+    font-size: 2rem;
+}
+
+.auth-stat span {
+    color: #d9c9e8;
+    font-size: 0.9rem;
+}
+
+.auth-form-box {
+    padding: 64px 52px;
+    background: var(--bg-card);
+}
+
+.back-link,
+.auth-footer a,
+.label-row a {
+    color: var(--violet-bright);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 36px;
+}
+
+.section-tag {
+    color: var(--orange);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+h2 {
+    margin: 10px 0 8px;
+    color: var(--text-main);
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    line-height: 1.08;
+}
+
+.form-intro,
+.auth-footer {
+    color: var(--text-muted);
+}
+
+.auth-form {
+    display: grid;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.auth-form label,
+.label-row label {
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-top: 4px;
+}
+
+.auth-form input:not([type="checkbox"]) {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-input);
+    color: var(--text-main);
+    font: inherit;
+}
+
+.auth-form input:not([type="checkbox"]):focus {
+    outline: 2px solid var(--violet);
+    outline-offset: 1px;
+}
+
+.password-input {
+    position: relative;
+}
+
+.auth-form .password-input input {
+    padding-right: 45px;
+}
+
+.password-input .fa-solid {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 6px 0 12px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--violet);
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    color: var(--text-main);
+    font-size: 0.88rem;
+    cursor: pointer;
+}
+
+.login-error {
+    margin: 0;
+    color: #ef4444;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.btn-full {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: var(--violet);
+    color: #ffffff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-full:hover {
+    background: #5926a3;
+    transform: translateY(-1px);
+}
+
+.auth-footer {
+    margin: 24px 0 0;
+    text-align: center;
+}
+
+@media (max-width: 800px) {
+    .auth-page { padding: 24px 16px; }
+    .auth-shell { grid-template-columns: 1fr; }
+    .auth-intro { min-height: 320px; padding: 36px 28px; }
+    .auth-form-box { padding: 36px 28px; }
+}

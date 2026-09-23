@@ -1,1 +1,193 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+:root {
+    --bg-main: #0f0e1a;
+    --bg-alt: #161525;
+    --card-bg: #1d1c2e;
+    --text-main: #ece8f5;
+    --text-muted: #b8b2d4;
+    --text-darker: #7b75a0;
+    --violet: #9d6ef5;
+    --violet-bright: #7c3aed;
+    --violet-bg: rgba(91,33,182,0.15);
+    --orange: #fb923c;
+    --orange-bg: rgba(251,146,60,0.1);
+    --border: rgba(124,58,237,0.18);
+    --font-serif: 'Fraunces', serif;
+    --font-sans: 'DM Sans', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+}
+
+a { text-decoration: none; color: var(--text-main); }
+
+/* ================= ESTILOS DE BOTÕES ================= */
+.btn-solid, .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+}
+
+.btn-solid {
+    background: linear-gradient(135deg, var(--violet) 0%, var(--violet-bright) 100%);
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(157, 110, 245, 0.3);
+}
+
+.btn-solid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(157, 110, 245, 0.4);
+}
+
+.btn-solid:active {
+    transform: translateY(0);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-main);
+    border: 2px solid var(--violet);
+}
+
+.btn-outline:hover {
+    background: var(--violet-bg);
+    transform: translateY(-2px);
+}
+
+.text-violet { color: var(--violet-bright); }
+.text-orange { color: var(--orange); }
+.text-center { text-align: center; }
+.text-muted { color: var(--text-muted); }
+
+/* - Modo claro*/
+body.light-mode {
+    --bg-main: #faf9f6;
+    --bg-alt: #f4f2ed;
+    --card-bg: #ffffff;
+    --text-main: #1c1917;
+    --text-muted: #78716c;
+    --text-darker: #44403c;
+    --violet: #5b21b6;
+    --violet-bright: #7c3aed;
+    --violet-bg: #ede9fe;
+    --orange: #c2410c;
+    --orange-bg: #fff7ed;
+    --border: #e8e4dc;
+}
+
+:root {
+  
+    --border: rgba(124,58,237,0.18);
+    --nav-bg: rgba(15, 14, 26, 0.95); 
+    --font-serif: 'Fraunces', serif;
+  
+}
+
+
+body.light-mode {
+  
+    --border: #e8e4dc;
+    --nav-bg: rgba(250, 249, 246, 0.95);
+}
+
+/* ================= SCROLL BEHAVIOR E ACESSIBILIDADE ================= */
+html {
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--violet);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--violet-bright);
+}
+
+/* ================= RESPONSIVIDADE BASE ================= */
+@media (max-width: 1024px) {
+    :root {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        font-size: 14px;
+    }
+    
+    .btn-solid, .btn-outline {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        font-size: 13px;
+    }
+}
+
+/* ================= DESIGN SYSTEM GLOBAL & SUPORTE A TEMAS ================= */
+:root {
+    --violet: #6f3cc3;
+    --violet-bright: #9353d3;
+    --orange: #e87932;
+}
+
+/* Modo Escuto por defeito ou explícito */
+body, body:not(.light-mode) {
+    --bg-page: #0f0e17;
+    --bg-card: #1a192b;
+    --bg-input: #232136;
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+    --border-color: #2e2c4d;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --footer-bg: #12111f;
+    --footer-border: #2e2c4d;
+    --footer-text: #b8b2d4;
+}
+
+/* Modo Claro ativado pela classe .light-mode no body */
+body.light-mode {
+    --bg-page: #f7f7fa;
+    --bg-card: #ffffff;
+    --bg-input: #ffffff;
+    --text-main: #241632;
+    --text-muted: #665b70;
+    --border-color: #e4dced;
+    --shadow-color: rgba(58, 35, 91, 0.08);
+    --footer-bg: #faf9f6;
+    --footer-border: #e8e4dc;
+    --footer-text: #665b70;
+}
+
+/* Aplicação global de transições suaves */
+body, .auth-shell, .dashboard-page, .trilha-shell, .curso-card, .summary-card, .aluna-card, input, select, textarea {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}

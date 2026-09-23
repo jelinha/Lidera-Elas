@@ -1,0 +1,205 @@
+<!-- SECÇÃO HERO -->
+<section class="hero" id="sobre">
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="badge">
+                <span class="dot"></span>
+                PLATAFORMA DE LIDERANÇA FEMININA
+            </div>
+            <h1 class="hero-title">
+                Formando as<br>
+                próximas <em class="text-violet">líderes<br>globais</em> das Américas
+            </h1>
+            <p class="hero-subtitle">
+                Conecte-se com mentoras, desenvolva sua marca pessoal e prepare-se para ocupar espaços de decisão pelo mundo.
+            </p>
+            <div class="hero-actions">
+                <a routerLink="/cadastro" class="btn-solid">Comece sua jornada <span aria-hidden="true">&rarr;</span></a>
+                <a href="#como-funciona" class="btn-outline">Saiba mais</a>
+            </div>
+        </div>
+       
+        <div class="hero-image-area">
+            <div class="floating-card-top">
+                <div class="percent">87%</div>
+                <div class="percent-text">das alunas avançaram em suas metas</div>
+            </div>
+           
+            <div class="image-wrapper">
+                <img src="https://images.unsplash.com/photo-1715610258704-e8f9f5710fe0?w=680&h=850&fit=crop&auto=format" alt="Mulher a palestrar">
+                <div class="floating-card-bottom">
+                    <div class="card-title">Harvard MUN 2026</div>
+                    <div class="card-subtitle">Anna Júlia · Delegada pelo Brasil · Salvador</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECÇÃO DESTINOS REAIS -->
+<section class="destinos" id="trilhas">
+    <div class="destinos-container">
+        <div class="section-header">
+            <div>
+                <div class="section-tag">DESTINOS REAIS</div>
+                <h2 class="section-title">Onde nossas líderes chegam</h2>
+            </div>
+            <div class="arrows">
+                <button class="arrow-btn" (click)="scrollCarrossel(-320)">&larr;</button>
+                <button class="arrow-btn" (click)="scrollCarrossel(320)">&rarr;</button>
+            </div>
+        </div>
+
+        <div class="cards-grid" #carrossel>
+            <div class="card">
+                <div class="card-top">
+                    <span class="card-tag">GEOPOLÍTICA</span>
+                    <span class="card-num">01</span>
+                </div>
+                <h3>Conferências Internacionais</h3>
+                <p>Prepare-se para simulações diplomáticas e delegações como o Harvard Model United Nations. Guias, modelos de posicionamento e prática de oratória.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-top">
+                    <span class="card-tag">IMPACTO GLOBAL</span>
+                    <span class="card-num">02</span>
+                </div>
+                <h3>Programas para Jovens Talentos</h3>
+                <p>Suporte completo para applications em iniciativas como o Three Dot Dash e outras bolsas de liderança global para jovens das Américas.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-top">
+                    <span class="card-tag">EMPREGABILIDADE</span>
+                    <span class="card-num">03</span>
+                </div>
+                <h3>Mercado & Marca Pessoal</h3>
+                <p>Otimize seu perfil no LinkedIn, construa portfólio e conecte-se com recrutadores de tecnologia e negócios em empresas globais.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-top">
+                    <span class="card-tag">ACADEMIAS</span>
+                    <span class="card-num">04</span>
+                </div>
+                <h3>Liderança Latino-Americana</h3>
+                <p>Prepare-se para processos seletivos de acampamentos e academias de liderança e empregabilidade com trilhas estruturadas e mentoria.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECÇÃO COMO FUNCIONA (COM CARROSSEL) -->
+<section class="como-funciona" id="mentoras">
+    <div class="como-funciona-container">
+        
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">Como funciona</h2>
+                <p class="text-muted" style="margin-top: 8px;">Três etapas claras para transformar seu potencial em trajetória global.</p>
+            </div>
+            <div class="arrows">
+                <button class="arrow-btn" (click)="scrollPassos(-340)">&larr;</button>
+                <button class="arrow-btn" (click)="scrollPassos(340)">&rarr;</button>
+            </div>
+        </div>
+
+        <div class="steps-carousel" #carrosselPassos>
+            <div class="step-card">
+                <div class="step-num">01</div>
+                <h3>Escolha sua Trilha</h3>
+                <p>Geopolítica, Tecnologia ou Mercado de Trabalho — defina sua área e receba um currículo de desenvolvimento personalizado.</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-num">02</div>
+                <h3>Encontre uma Mentora</h3>
+                <p>Conecte-se com mulheres que já atuam em posições de decisão — em diplomacia, tecnologia e negócios globais.</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-num">03</div>
+                <h3>Acelere sua Carreira</h3>
+                <p>Acesse guias de estudo, prepare-se para a Olimpíada Nacional de Globalização e desenvolva projetos com impacto real.</p>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<!-- SECÇÃO KIDS & TEENS -->
+<section class="kids-teens" id="impacto">
+    <div class="kids-container">
+        <div class="kids-image">
+              <img src="/semeando-futuro.jpg" alt="Meninas do projeto Lidera Elas">
+        </div>
+        <div class="kids-content">
+            <div class="badge-orange">PARA MENINAS DE 10 A 17 ANOS</div>
+            <h2 class="section-title">Semeando o futuro<br><span class="text-orange">desde cedo</span></h2>
+            <p>Acreditamos que o empoderamento começa na infância e adolescência. Nossa trilha <strong>Lidera Elas Kids & Teens</strong> oferece um ambiente seguro e inspirador para meninas em situação de vulnerabilidade social desenvolverem autoconfiança, habilidades socioemocionais e sonharem grande.</p>
+           
+            <div class="kids-list">
+                <div class="list-item">
+                    <div class="list-icon">1</div>
+                    <div>
+                        <h4>Clubes de Leitura & Expressão</h4>
+                        <p>Rodas literárias e dinâmicas de comunicação para fortalecer a voz de cada menina.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="relatos" id="relatos" aria-label="Impacto e resultados que contam">
+    <div class="relatos-container">
+        <div class="section-header relatos-header">
+            <div>
+                <div class="section-tag">RESULTADOS QUE CONTAM</div>
+                <h2 class="section-title">Mulheres e jovens que encontraram espaço para crescer</h2>
+            </div>
+        </div>
+
+        <div class="resultado-grid">
+            <div class="resultado-card destaque">
+                <span class="resultado-num">1.800+</span>
+                <span class="resultado-label">mulheres e jovens apoiadas</span>
+            </div>
+            <div class="resultado-card">
+                <span class="resultado-num">87%</span>
+                <span class="resultado-label">avançaram em metas de estudo e carreira</span>
+            </div>
+            <div class="resultado-card">
+                <span class="resultado-num">72%</span>
+                <span class="resultado-label">participaram de oportunidades de liderança ou formação</span>
+            </div>
+        </div>
+
+        <div class="relato-grid">
+            <article class="relato-card">
+                <p>“Antes do programa, eu tinha medo de falar em público. Hoje eu lidero debates, me inscrevi em um congresso e consegui abrir minha própria rede de apoio. Foi como aprender que a minha voz também importa.”</p>
+                <div class="relato-autor">
+                    <strong>Laura, 17 anos</strong>
+                    <span>Jovem líder em trilha de geopolítica</span>
+                </div>
+            </article>
+
+            <article class="relato-card">
+                <p>“A mentoria me mostrou como transformar ideias em projetos. Eu saí da minha zona de conforto, aprendi a me posicionar e hoje estou mais confiante para aplicar em bolsas e programas internacionais.”</p>
+                <div class="relato-autor">
+                    <strong>Marina, 19 anos</strong>
+                    <span>Assistida por mentoria de carreira</span>
+                </div>
+            </article>
+
+            <article class="relato-card">
+                <p>“O programa me acolheu em um momento em que eu acreditava que não era capaz de ir longe. Com o suporte das trilhas e da rede de mulheres, eu consegui entrar em uma nova etapa da minha vida profissional.”</p>
+                <div class="relato-autor">
+                    <strong>Beatriz, 22 anos</strong>
+                    <span>Líder em formação e em ação</span>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>

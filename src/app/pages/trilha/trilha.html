@@ -1,0 +1,26 @@
+<main class="trilha-page">
+    <section class="trilha-shell">
+        <a routerLink="/dashboard" class="back-link">&larr; Voltar para o painel</a>
+        <span class="category-tag">{{ detalhe.categoria }}</span>
+        <h1>{{ detalhe.titulo }}</h1>
+        <p class="institution">{{ detalhe.instituicao }}</p>
+        <p class="description">{{ detalhe.descricao }}</p>
+
+        <div class="trilha-content">
+            <div>
+                <span class="section-tag">PERCURSO</span>
+                <h2>O que vais encontrar</h2>
+                <ol class="steps-list">
+                    @for (etapa of detalhe.etapas; track etapa) {
+                        <li>{{ etapa }}</li>
+                    }
+                </ol>
+            </div>
+            <aside class="start-panel">
+                <strong>Trilha disponível</strong>
+                <p>Começa no teu ritmo com um conteúdo gratuito e acompanha a tua evolução.</p>
+                <a class="start-button" [href]="detalhe.recursoUrl" target="_blank" rel="noopener noreferrer">Começar trilha</a>
+            </aside>
+        </div>
+    </section>
+</main>
