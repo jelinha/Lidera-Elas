@@ -27,7 +27,7 @@ export class Login {
     event.preventDefault();
 
     const formulario = new FormData(event.currentTarget as HTMLFormElement);
-    const email = String(formulario.get('email') ?? '');
+    const email = String(formulario.get('email') ?? '').trim().toLowerCase();
     const senha = String(formulario.get('senha') ?? '');
     const utilizadores = this.obterUtilizadores();
     const utilizadorValido = utilizadores.find(

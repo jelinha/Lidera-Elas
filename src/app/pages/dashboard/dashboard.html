@@ -69,7 +69,7 @@
                             <article class="overview-card">
                                 <span class="overview-icon">01</span>
                                 <h3>Seu Percurso de Trilhas</h3>
-                                <p>Tens {{ trilhasDisponiveis.length }} recomendações para desenvolver o teu potencial.</p>
+                                <p>Tens {{ trilhasDisponiveis.length }} recomendações para desenvolver o seu potencial.</p>
                                 <button type="button" class="text-action" (click)="selecionarAba('trilhas')">Acessar trilhas <span aria-hidden="true">&#8594;</span></button>
                             </article>
                             <article class="overview-card">
@@ -160,7 +160,11 @@
                         <div class="mentors-catalog">
                             @for (mentora of mentorasDisponiveis; track mentora.id) {
                                 <article class="mentor-catalog-card">
-                                    <div class="mentor-avatar">{{ mentora.iniciais }}</div>
+                                    @if (mentora.foto) {
+                                        <img class="mentor-avatar mentor-photo" [src]="mentora.foto" [alt]="'Foto de ' + mentora.nome">
+                                    } @else {
+                                        <div class="mentor-avatar">{{ mentora.iniciais }}</div>
+                                    }
                                     <span class="category-tag">{{ mentora.especializacao }}</span>
                                     <h3>{{ mentora.nome }}</h3>
                                     <p class="mentor-role">{{ mentora.cargo }} &bull; {{ mentora.empresa }}</p>
@@ -222,7 +226,7 @@
                         @if (!mentoriaDesbloqueada) {
                             <div class="empty-state">
                                 <span class="overview-icon">LE</span>
-                                <h3>Ainda não tens uma mentora ativa</h3>
+                                <h3>Ainda não tem uma mentora ativa</h3>
                                 <p>Acompanhe os seus pedidos na aba Minhas Solicitações.</p>
                                 <button type="button" class="course-button" (click)="selecionarAba('catalogo-mentoras')">Ir para o Banco de Mentoras</button>
                             </div>
@@ -447,7 +451,11 @@
                         <div class="mentor-card-grid">
                             @for (mentora of redeMentoras; track mentora.nome) {
                                 <article class="aluna-card network-mentor-card">
-                                    <div class="mentor-avatar">{{ mentora.iniciais }}</div>
+                                    @if (mentora.foto) {
+                                        <img class="mentor-avatar mentor-photo" [src]="mentora.foto" [alt]="'Foto de ' + mentora.nome">
+                                    } @else {
+                                        <div class="mentor-avatar">{{ mentora.iniciais }}</div>
+                                    }
                                     <h3>{{ mentora.nome }}</h3>
                                     <p class="mentor-role">{{ mentora.cargo }}</p>
                                     <p>{{ mentora.empresa }}</p>

@@ -28,10 +28,10 @@ export const NOVIDADES_PUBLICAS: Novidade[] = [
 ];
 
 export const MENTORAS_DISPONIVEIS: Mentora[] = [
-  { id: 1, nome: 'Dra. Helena Ribeiro', iniciais: 'HR', especializacao: 'Geopolítica', cargo: 'Especialista em Relações Internacionais', empresa: 'Instituto Diplomun', bio: 'Mentora sênior com experiência na preparação de jovens para conferências globais.' },
-  { id: 2, nome: 'Engª. Sofia Costa', iniciais: 'SC', especializacao: 'Tecnologia', cargo: 'Tech Lead & Desenvolvedora', empresa: 'SENAI Bahia', bio: 'Foco em transição de carreira para a área de tecnologia, lógica e programação.' },
-  { id: 3, nome: 'Carla Mendes', iniciais: 'CM', especializacao: 'Carreira', cargo: 'Coordenadora de RH', empresa: 'Latin American Academy', bio: 'Especialista em empregabilidade, currículos e otimização de perfil no LinkedIn.' },
-  { id: 4, nome: 'Marta Oliveira', iniciais: 'MO', especializacao: 'Comunicação', cargo: 'Diretora de Comunicação e Oratória', empresa: 'Vozes em Rede', bio: 'Acompanha jovens líderes no desenvolvimento da confiança, expressão e comunicação estratégica.' }
+  { id: 1, nome: 'Yasmin Rodrigues', iniciais: 'YR', foto: '/yasmin.jpg', especializacao: 'Geopolítica', cargo: 'Especialista em Relações Internacionais', empresa: 'Instituto Diplomun', bio: 'Mentora sênior com experiência na preparação de jovens para conferências globais.' },
+  { id: 2, nome: 'Engª. Carla Lemos', iniciais: 'CL', foto: '/carla.jpg', especializacao: 'Tecnologia', cargo: 'Tech Lead & Desenvolvedora', empresa: 'SENAI Bahia', bio: 'Foco em transição de carreira para a área de tecnologia, lógica e programação.' },
+  { id: 3, nome: 'Sara Barbosa', iniciais: 'SB', foto: '/sara.jpg', especializacao: 'Carreira', cargo: 'Coordenadora de Finanças', empresa: 'Latin American Academy', bio: 'Especialista em empregabilidade, currículos e otimização de perfil no LinkedIn.' },
+  { id: 4, nome: 'Giulia Guarniero', iniciais: 'GG', foto: '/giulia.jpg', especializacao: 'Comunicação', cargo: 'Diretora de Comunicação e Oratória', empresa: 'Vozes em Rede', bio: 'Acompanha jovens líderes no desenvolvimento da confiança, expressão e comunicação estratégica.' }
 ];
 
 export const PEDIDOS_MENTORIA: PedidoMentoria[] = [
@@ -45,10 +45,10 @@ export const ALUNAS_INICIAIS: Aluna[] = [
 ];
 
 export const REDE_MENTORAS: MentoraDaRede[] = [
-  { nome: 'Dra. Lívia Martins', cargo: 'Diretora de Estratégia e Inovação', empresa: 'Impacto Global', iniciais: 'LM', linkedin: 'https://www.linkedin.com' },
-  { nome: 'Patrícia Almeida', cargo: 'Head de Pessoas e Cultura', empresa: 'Núcleo Atlântico', iniciais: 'PA', linkedin: 'https://www.linkedin.com' },
-  { nome: 'Dra. Renata Souza', cargo: 'Investigadora e Consultora de Políticas Públicas', empresa: 'Instituto Horizonte', iniciais: 'RS', linkedin: 'https://www.linkedin.com' },
-  { nome: 'Marina Duarte', cargo: 'Executiva de Finanças Sustentáveis', empresa: 'Verde Capital', iniciais: 'MD', linkedin: 'https://www.linkedin.com' }
+  { nome: 'Carla Lemos', cargo: 'Diretora de Estratégia e Inovação', empresa: 'Impacto Global', iniciais: 'LM', foto: '/carla.jpg', linkedin: 'https://www.linkedin.com' },
+  { nome: 'Giulia Guarniero', cargo: 'Head de Pessoas e Cultura', empresa: 'Núcleo Atlântico', iniciais: 'PA', foto: '/giulia.jpg', linkedin: 'https://www.linkedin.com' },
+  { nome: 'Yasmin Rodrigues', cargo: 'Investigadora e Consultora de Políticas Públicas', empresa: 'Instituto Horizonte', iniciais: 'RS', foto: '/yasmin.jpg', linkedin: 'https://www.linkedin.com' },
+  { nome: 'Sara Barbosa', cargo: 'Executiva de Finanças Sustentáveis', empresa: 'Verde Capital', iniciais: 'MD', foto: '/sara.jpg', linkedin: 'https://www.linkedin.com' }
 ];
 
 export const ENCONTROS_MARCADOS: Encontro[] = [

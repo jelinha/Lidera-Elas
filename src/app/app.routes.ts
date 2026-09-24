@@ -7,6 +7,7 @@ import { authGuard } from './guards/auth.guard';
 import { Trilha } from './pages/trilha/trilha';
 import { Alunas } from './pages/alunas/alunas';
 import { Novidades } from './pages/novidades/novidades';
+import { Blog } from './pages/blog/blog';
 
 import { Legal } from './pages/legal/legal';
 
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'trilhas/:slug', component: Trilha },
   { path: 'alunas/:id', component: Alunas, canActivate: [authGuard] },
   { path: 'novidades', component: Novidades, canActivate: [authGuard] },
+  { path: 'blog', component: Blog },
   { path: 'legal/privacidade', component: Legal },
   { path: 'legal/lgpd', component: Legal }
 ];

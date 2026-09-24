@@ -31,12 +31,12 @@ export class Alunas {
       {
         data: '2 de Outubro, 2026',
         tema: 'Objetivos e próximos passos',
-        notas: 'Mapeámos interesses profissionais e organizámos um plano de desenvolvimento mensal.'
+        notas: 'Mapeamos interesses profissionais e organizamos um plano de desenvolvimento mensal.'
       },
       {
         data: '18 de Setembro, 2026',
         tema: 'Primeira conversa de mentoria',
-        notas: 'Conhecemos a trajetória da Beatriz e alinhámos expectativas para o acompanhamento.'
+        notas: 'Conhecemos a trajetória da Beatriz e alinhamos expectativas para o acompanhamento.'
       }
     ]
   };

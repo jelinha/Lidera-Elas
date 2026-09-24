@@ -11,6 +11,7 @@ export class Cadastro {
   mostrarSenha = false;
   mostrarConfirmacao = false;
   senhaInvalida = false;
+  emailJaCadastrado = false;
 
   constructor(private readonly router: Router) {}
 
@@ -42,10 +43,18 @@ export class Cadastro {
 
     this.senhaInvalida = false;
     const utilizadores = this.obterUtilizadores();
+    const email = String(formulario.get('email') ?? '').trim().toLowerCase();
+
+    if (utilizadores.some((utilizador) => utilizador['email']?.trim().toLowerCase() === email)) {
+      this.emailJaCadastrado = true;
+      return;
+    }
+
+    this.emailJaCadastrado = false;
     const novoUtilizador = {
       nome: String(formulario.get('nome') ?? ''),
       nascimento: String(formulario.get('nascimento') ?? ''),
-      email: String(formulario.get('email') ?? ''),
+      email,
       senha,
       perfil: this.tipoPerfil,
       tipoPerfil: this.tipoPerfil,

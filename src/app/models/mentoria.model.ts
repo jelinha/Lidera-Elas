@@ -4,6 +4,7 @@ export interface Mentora {
   id: number;
   nome: string;
   iniciais: string;
+  foto?: string;
   especializacao: string;
   cargo: string;
   empresa: string;
@@ -58,6 +59,7 @@ export interface MentoraDaRede {
   cargo: string;
   empresa: string;
   iniciais: string;
+  foto?: string;
   linkedin: string;
 }
 

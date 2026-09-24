@@ -85,6 +85,11 @@
     font-weight: 800;
 }
 
+.mentor-photo {
+    object-fit: cover;
+    overflow: hidden;
+}
+
 .sidebar-brand span {
     width: 34px;
     height: 34px;

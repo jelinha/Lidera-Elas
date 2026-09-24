@@ -37,6 +37,9 @@
 			<div class="input-group">
 				<label for="email">E-mail</label>
 				<input id="email" name="email" type="email" autocomplete="email" required>
+				@if (emailJaCadastrado) {
+					<span class="password-error" role="alert">Este e-mail já possui um cadastro. Entre na sua conta.</span>
+				}
 			</div>
 
 			<div class="input-group">

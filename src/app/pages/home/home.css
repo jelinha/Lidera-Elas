@@ -118,7 +118,7 @@
 
 .floating-card-top {
     position: absolute;
-    top: 30px;
+    top: -20px;
     left: -40px;
     background-color: var(--card-bg);
     padding: 20px;
@@ -156,18 +156,31 @@
     bottom: 20px;
     left: 20px;
     right: 20px;
-    background: rgba(29, 28, 46, 0.9);
+    background: var(--card-bg);
     backdrop-filter: blur(12px);
     padding: 16px;
     border-radius: 12px;
-    border: 1px solid rgba(157, 110, 245, 0.2);
+    border: 1px solid var(--border);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 }
 
 .floating-card-bottom:hover {
-    background: rgba(29, 28, 46, 0.95);
+    background: var(--card-bg);
     transform: translateY(-4px);
+}
+
+body:not(.light-mode) .floating-card-bottom {
+    background: rgba(29, 28, 46, 0.94);
+    border-color: rgba(157, 110, 245, 0.35);
+}
+
+body:not(.light-mode) .floating-card-bottom .card-title {
+    color: #b794ff;
+}
+
+body:not(.light-mode) .floating-card-bottom .card-subtitle {
+    color: #d8d2eb;
 }
 
 .card-title {
@@ -540,11 +553,13 @@
     flex-direction: column;
     gap: 10px;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+    margin-top: -20;
 }
 
 .resultado-card.destaque {
     background: linear-gradient(135deg, rgba(157, 110, 245, 0.12) 0%, rgba(157, 110, 245, 0.04) 100%);
     border-color: rgba(157, 110, 245, 0.45);
+    margin-top: -20;
 }
 
 .resultado-num {
@@ -606,6 +621,16 @@
 
 body.light-mode .hero {
     background: linear-gradient(180deg, transparent 0%, rgba(123, 33, 182, 0.05) 100%);
+}
+
+body.light-mode .floating-card-bottom {
+    background: var(--card-bg);
+    border-color: var(--border);
+    box-shadow: 0 10px 30px rgba(56, 35, 78, 0.18);
+}
+
+body.light-mode .floating-card-bottom:hover {
+    background: var(--card-bg);
 }
 
 body.light-mode .btn-solid {
