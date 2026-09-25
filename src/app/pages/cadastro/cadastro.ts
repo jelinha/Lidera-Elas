@@ -12,6 +12,7 @@ export class Cadastro {
   mostrarConfirmacao = false;
   senhaInvalida = false;
   emailJaCadastrado = false;
+  cadastroSucesso = false;
 
   constructor(private readonly router: Router) {}
 
@@ -62,8 +63,12 @@ export class Cadastro {
 
     utilizadores.push(novoUtilizador);
     localStorage.setItem('lideraElasUsuarios', JSON.stringify(utilizadores));
-    alert('Cadastro realizado com sucesso!');
-    this.router.navigate(['/login']);
+    
+
+    this.cadastroSucesso = true;
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 2500); 
   }
 
   private obterUtilizadores(): Record<string, string>[] {

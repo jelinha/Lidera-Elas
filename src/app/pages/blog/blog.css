@@ -1,5 +1,5 @@
 .blog-page {
-    min-height: calc(100vh - 76px);
+    min-height: calc(100vh - var(--header-h));
     padding: 56px clamp(22px, 6vw, 88px) 88px;
     background:
         radial-gradient(circle at 12% 8%, rgba(91, 33, 182, 0.18), transparent 32%),
@@ -146,4 +146,10 @@ h1 em {
     .back-link {
         margin-bottom: 42px;
     }
+}
+
+.post-conteudo {
+    padding-top: 12px;
+    border-top: 1px dashed var(--border-color);
+    color: var(--text-main);
 }

@@ -195,7 +195,6 @@ body:not(.light-mode) .floating-card-bottom .card-subtitle {
     margin-top: 4px;
 }
 
-/* DESTINOS REAIS & CARROSSEL */
 .destinos {
     background-color: var(--bg-alt);
     padding: 100px 32px;
@@ -328,7 +327,7 @@ body:not(.light-mode) .floating-card-bottom .card-subtitle {
     line-height: 1.6;
 }
 
-/* COMO FUNCIONA */
+
 .como-funciona {
     padding: 100px 32px;
     background: linear-gradient(180deg, transparent 0%, rgba(157, 110, 245, 0.03) 100%);
@@ -415,7 +414,7 @@ body:not(.light-mode) .floating-card-bottom .card-subtitle {
     line-height: 1.6;
 }
 
-/* KIDS & TEENS */
+
 .kids-teens {
     background-color: var(--bg-alt);
     padding: 100px 32px;
@@ -648,7 +647,7 @@ body.light-mode .btn-outline:hover {
     background: rgba(123, 33, 182, 0.12);
 }
 
-/* ================= RESPONSIVIDADE (TABLET) ================= */
+
 @media (max-width: 1024px) {
     .hero-title { font-size: 48px; }
     .section-title { font-size: 36px; }
@@ -656,9 +655,7 @@ body.light-mode .btn-outline:hover {
     .card, .step-card { min-width: 280px; }
 }
 
-/* ================= RESPONSIVIDADE (MOBILE) ================= */
 @media (max-width: 768px) {
-    /* Secção Hero */
     .hero {
         padding: 60px 20px 80px;
     }
@@ -684,7 +681,7 @@ body.light-mode .btn-outline:hover {
         gap: 12px;
     }
 
-    /* Seções */
+
     .destinos, .como-funciona, .kids-teens {
         padding: 60px 20px;
     }
@@ -704,19 +701,18 @@ body.light-mode .btn-outline:hover {
         justify-content: flex-start;
     }
 
-    /* Kids & Teens */
+ 
     .kids-container {
         grid-template-columns: 1fr;
         gap: 40px;
     }
 
-    /* Cards */
     .card, .step-card {
         min-width: 280px;
         padding: 24px 20px;
     }
 
-    /* Cartões flutuantes */
+  
     .floating-card-top {
         position: static;
         width: 100%;
@@ -735,7 +731,7 @@ body.light-mode .btn-outline:hover {
     }
 }
 
-/* ================= RESPONSIVIDADE (MOBILE PEQUENO) ================= */
+
 @media (max-width: 480px) {
     .hero {
         padding: 40px 16px 60px;

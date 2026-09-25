@@ -11,7 +11,8 @@ import {
   PROGRESSO_INICIAL,
   PROXIMOS_PASSOS,
   REDE_MENTORAS,
-  TRILHAS_DISPONIVEIS
+  TRILHAS_DISPONIVEIS,
+  PERFIS_ALUNAS
 } from '../mocks/lideraelas-mocks';
 
 @Injectable({ providedIn: 'root' })
@@ -28,4 +29,6 @@ export class MockDataService {
   readonly progressoInicial = PROGRESSO_INICIAL;
   readonly missoesMentoria = MISSOES_MENTORIA;
   readonly proximosPassos = PROXIMOS_PASSOS;
+  readonly perfisAlunas = PERFIS_ALUNAS;
+  detalhesTrilhas: any;
 }

@@ -1,26 +1,56 @@
-<main class="trilha-page">
+<div class="trilha-page">
     <section class="trilha-shell">
-        <a routerLink="/dashboard" class="back-link">&larr; Voltar para o painel</a>
-        <span class="category-tag">{{ detalhe.categoria }}</span>
-        <h1>{{ detalhe.titulo }}</h1>
-        <p class="institution">{{ detalhe.instituicao }}</p>
-        <p class="description">{{ detalhe.descricao }}</p>
+        <nav class="breadcrumb" aria-label="Você está em">
+            <ol>
+                <li><a routerLink="/dashboard">Painel</a></li>
+                <li><a routerLink="/dashboard" [queryParams]="{ aba: 'trilhas' }">Minhas trilhas</a></li>
+                <li aria-current="page">{{ detalhe()?.titulo ?? 'Trilha não encontrada' }}</li>
+            </ol>
+        </nav>
 
-        <div class="trilha-content">
-            <div>
-                <span class="section-tag">PERCURSO</span>
-                <h2>O que vais encontrar</h2>
-                <ol class="steps-list">
-                    @for (etapa of detalhe.etapas; track etapa) {
-                        <li>{{ etapa }}</li>
-                    }
-                </ol>
+        @if (detalhe(); as trilha) {
+            <span class="category-tag">{{ trilha.categoria }}</span>
+            <h1>{{ trilha.titulo }}</h1>
+            <p class="institution">{{ trilha.instituicao }}</p>
+            <p class="description">{{ trilha.descricao }}</p>
+
+            <div class="trilha-content">
+                <div>
+                    <span class="section-tag">PERCURSO</span>
+                    <h2>O que vai encontrar</h2>
+                    <ol class="steps-list">
+                        @for (etapa of trilha.etapas; track etapa) {
+                            <li>{{ etapa }}</li>
+                        }
+                    </ol>
+                </div>
+                <aside class="start-panel">
+                    <strong>Trilha disponível</strong>
+                    <p>Comece no seu ritmo com um conteúdo gratuito e acompanhe a sua evolução.</p>
+                    <a class="start-button" [href]="trilha.recursoUrl" target="_blank" rel="noopener noreferrer">
+                        Começar trilha<span class="sr-only"> (abre em nova aba)</span>
+                    </a>
+                </aside>
             </div>
-            <aside class="start-panel">
-                <strong>Trilha disponível</strong>
-                <p>Começa no seu ritmo com um conteúdo gratuito e acompanhe sua evolução.</p>
-                <a class="start-button" [href]="detalhe.recursoUrl" target="_blank" rel="noopener noreferrer">Começar trilha</a>
-            </aside>
-        </div>
+        } @else {
+            <h1>Trilha não encontrada</h1>
+            <p class="description">O endereço pode estar incorreto ou a trilha pode ter sido removida. Veja as trilhas disponíveis:</p>
+        }
+
+        @if (outrasTrilhas().length) {
+            <div class="outras-trilhas">
+                <h2>{{ detalhe() ? 'Outras trilhas' : 'Trilhas disponíveis' }}</h2>
+                <ul>
+                    @for (trilha of outrasTrilhas(); track trilha.slug) {
+                        <li>
+                            <a [routerLink]="['/trilhas', trilha.slug]">
+                                <span class="category-tag">{{ trilha.categoria }}</span>
+                                <strong>{{ trilha.titulo }}</strong>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
     </section>
-</main>
+</div>

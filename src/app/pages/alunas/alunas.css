@@ -1,5 +1,5 @@
 .aluna-page {
-    min-height: calc(100vh - 96px);
+    min-height: calc(100vh - var(--header-h));
     padding: 52px clamp(20px, 6vw, 88px);
     background: var(--bg-page);
     color: var(--text-main);

@@ -1,10 +1,8 @@
 <main class="dashboard-page">
-    
     <div class="dashboard-layout">
-     
         <div class="sidebar-overlay" [class.visivel]="sidebarAberta" (click)="fecharSidebar()" aria-hidden="true"></div>
         <aside class="dashboard-sidebar" [class.aberta]="sidebarAberta" aria-label="Navegação do painel">
-            <div class="sidebar-brand">
+            <div class="sidebar-marca">
                 <span>LE</span><strong>LideraElas</strong>
                 <button type="button" class="sidebar-close" (click)="fecharSidebar()" aria-label="Fechar menu">&times;</button>
             </div>
@@ -17,9 +15,7 @@
                     <button type="button" [class.active]="abaAtiva === 'minha-mentoria'" [class.desbloqueada]="mentoriaDesbloqueada" (click)="selecionarAba('minha-mentoria')">Minha Mentoria</button>
                     <button type="button" class="news-nav-button" [class.active]="abaAtiva === 'novidades'" (click)="selecionarAba('novidades')">Notícias <span aria-hidden="true">&#8594;</span></button>
                 </nav>
-            } 
-            
-            @else {
+            } @else {
                 <nav class="dashboard-nav">
                     <button type="button" [class.active]="abaAtiva === 'visao-geral'" (click)="selecionarAba('visao-geral')">Solicitações</button>
                     <button type="button" [class.active]="abaAtiva === 'historico-alunas'" (click)="selecionarAba('historico-alunas')">Histórico de Alunas</button>
@@ -31,45 +27,39 @@
             <button type="button" class="sidebar-logout" (click)="sair()">Sair <span aria-hidden="true">&#8594;</span></button>
         </aside>
 
- 
         <div class="dashboard-main">
-                                        
             <header class="dashboard-header" style="margin-bottom: 24px;">
                 <div>
-                    <span class="section-tag">ÁREA RESTRITA</span>
                     <h1>{{ tipoUsuario === 'jovem-lider' ? 'Painel da Jovem Líder' : 'Painel da Mentora' }}</h1>
                 </div>
             </header>
 
             @if (tipoUsuario === 'mentora') {
-                <section class="availability-panel" aria-label="Disponibilidade para novas alunas">
+                <section class="disponibilidade" aria-label="Disponibilidade para novas alunas">
                     <div>
                         <span class="section-tag">STATUS DA AGENDA</span>
                         <strong>{{ aceitandoAlunas ? 'Aceitando novas alunas' : 'Agenda Lotada' }}</strong>
                         <p>{{ aceitandoAlunas ? 'O seu perfil está disponível para novos pedidos de mentoria.' : 'Novos pedidos ficam pausados até voltar a ter disponibilidade.' }}</p>
                     </div>
-                    <button type="button" class="availability-toggle" [class.indisponivel]="!aceitandoAlunas" (click)="toggleDisponibilidade()" [attr.aria-pressed]="aceitandoAlunas" [attr.aria-label]="aceitandoAlunas ? 'Desativar disponibilidade' : 'Ativar disponibilidade'">
-                        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                    <button type="button" class="alternador-disponibilidade" [class.indisponivel]="!aceitandoAlunas" (click)="toggleDisponibilidade()" [attr.aria-pressed]="aceitandoAlunas" [attr.aria-label]="aceitandoAlunas ? 'Desativar disponibilidade' : 'Ativar disponibilidade'">
+                        <span class="controle-tempo"><span class="bolinha"></span></span>
                         <span>{{ aceitandoAlunas ? 'Disponível' : 'Pausada' }}</span>
                     </button>
                 </section>
             }
 
             @if (mensagemFeedback) {
-                <div class="success-message" role="status">{{ mensagemFeedback }}</div>
+                <div class="sucesso-mensagem" role="status">{{ mensagemFeedback }}</div>
             }
 
-          
             @if (tipoUsuario === 'jovem-lider') {
-                
-                
                 @if (abaAtiva === 'visao-geral') {
                     <section class="content-section">
                         <div class="overview-grid">
                             <article class="overview-card">
                                 <span class="overview-icon">01</span>
                                 <h3>Seu Percurso de Trilhas</h3>
-                                <p>Tens {{ trilhasDisponiveis.length }} recomendações para desenvolver o seu potencial.</p>
+                                <p>Há {{ trilhasDisponiveis.length }} recomendações para desenvolver o seu potencial.</p>
                                 <button type="button" class="text-action" (click)="selecionarAba('trilhas')">Acessar trilhas <span aria-hidden="true">&#8594;</span></button>
                             </article>
                             <article class="overview-card">
@@ -78,12 +68,12 @@
                                 @if (minhaMentora) {
                                     <p>Enviou uma solicitação para <strong>{{ minhaMentora.nome }}</strong>. Aguarde a resposta.</p>
                                 } @else {
-                                    <p>Você ainda não tem uma mentora. Encontra uma profissional no nosso banco.</p>
+                                    <p>Você ainda não tem uma mentora. Encontre uma profissional no nosso banco.</p>
                                     <button type="button" class="text-action" (click)="selecionarAba('catalogo-mentoras')">Abrir banco de mentoras <span aria-hidden="true">&#8594;</span></button>
                                 }
                             </article>
                         </div>
-                        <div class="progress-and-tasks-grid">
+                        <div class="grade-de-progresso-tarefas">
                             <article class="impact-card">
                                 <div class="impact-card-heading">
                                     <div>
@@ -125,7 +115,6 @@
                     </section>
                 }
 
-                
                 @if (abaAtiva === 'novidades') {
                     <section class="content-section news-feed-section">
                         <div class="section-heading">
@@ -149,7 +138,6 @@
                     </section>
                 }
 
-          
                 @if (abaAtiva === 'catalogo-mentoras') {
                     <section class="content-section">
                         <div class="section-heading">
@@ -171,9 +159,9 @@
                                     <p class="mentor-bio" style="margin-top: 12px;">{{ mentora.bio }}</p>
                                     
                                     @if (temSolicitacaoAtiva(mentora.id)) {
-                                        <button type="button" class="course-button" style="background: transparent; border: 1px solid var(--orange); color: var(--orange);" disabled>Solicitação Enviada</button>
+                                        <button type="button" class="curso-button" style="background: transparent; border: 1px solid var(--orange); color: var(--orange);" disabled>Solicitação Enviada</button>
                                     } @else {
-                                        <button type="button" class="course-button" (click)="enviarSolicitacaoMentoria(mentora)">Enviar Solicitação</button>
+                                        <button type="button" class="curso-button" (click)="enviarSolicitacaoMentoria(mentora)">Enviar Solicitação</button>
                                     }
                                 </article>
                             }
@@ -181,7 +169,6 @@
                     </section>
                 }
 
-                
                 @if (abaAtiva === 'minhas-solicitacoes') {
                     <section class="content-section">
                         <div class="section-heading">
@@ -210,13 +197,12 @@
                                 <span class="overview-icon">+</span>
                                 <h3>Você ainda não tem solicitações</h3>
                                 <p>Procure uma mentora e envie o seu primeiro pedido de acompanhamento.</p>
-                                <button type="button" class="course-button" (click)="selecionarAba('catalogo-mentoras')">Abrir Banco de Mentoras</button>
+                                <button type="button" class="curso-button" (click)="selecionarAba('catalogo-mentoras')">Abrir Banco de Mentoras</button>
                             </div>
                         }
                     </section>
                 }
 
-            
                 @if (abaAtiva === 'minha-mentoria') {
                     <section class="content-section">
                         <div class="section-heading">
@@ -226,9 +212,9 @@
                         @if (!mentoriaDesbloqueada) {
                             <div class="empty-state">
                                 <span class="overview-icon">LE</span>
-                                <h3>Ainda não tem uma mentora ativa</h3>
+                                <h3>Ainda não tem uma mentora ativa.</h3>
                                 <p>Acompanhe os seus pedidos na aba Minhas Solicitações.</p>
-                                <button type="button" class="course-button" (click)="selecionarAba('catalogo-mentoras')">Ir para o Banco de Mentoras</button>
+                                <button type="button" class="curso-button" (click)="selecionarAba('catalogo-mentoras')">Ir para o Banco de Mentoras</button>
                             </div>
                         } @else {
                             <article class="aluna-card assigned-mentor-card">
@@ -272,15 +258,14 @@
                                         <p class="meeting-confirmed">{{ minhaMentora?.reuniao?.data }}</p>
                                         <p>{{ minhaMentora?.reuniao?.hora }} &bull; {{ minhaMentora?.reuniao?.pauta }}</p>
                                     } @else {
-                                        <p class="meeting-empty">Ainda não tens uma reunião marcada com a tua mentora.</p>
-                                        <button type="button" class="course-button" (click)="solicitarAgendamento()">Solicitar Agendamento</button>
+                                        <p class="meeting-empty">Você ainda não tem uma reunião marcada com a tua mentora.</p>
+                                        <button type="button" class="curso-button" (click)="solicitarAgendamento()">Solicitar Agendamento</button>
                                     }
                                 </article>
                             </div>
                         }
                     </section>
                 }
-
               
                 @if (abaAtiva === 'trilhas') {
                     <section class="content-section">
@@ -288,26 +273,24 @@
                             <span class="section-tag">DESENVOLVIMENTO</span>
                             <h2>Trilhas Recomendadas</h2>
                         </div>
-                        <div class="courses-grid">
+                        <div class="cursos-grid">
                             @for (trilha of trilhasDisponiveis; track trilha.titulo) {
                                 <article class="curso-card">
                                     <div class="curso-card-top">
                                         <span class="category-tag">{{ trilha.categoria }}</span>
-                                        <span class="course-status">{{ trilha.status }}</span>
+                                        <span class="curso-status">{{ trilha.status }}</span>
                                     </div>
                                     <h3>{{ trilha.titulo }}</h3>
-                                    <p class="course-institution">{{ trilha.instituicao }}</p>
-                                    <a class="course-button" [routerLink]="['/trilhas', trilha.slug]">Acessar Trilha</a>
+                                    <p class="curso-institution">{{ trilha.instituicao }}</p>
+                                    <a class="curso-button" [routerLink]="['/trilhas', trilha.slug]">Acessar Trilha</a>
                                 </article>
                             }
                         </div>
                     </section>
                 }
             }
-
           
             @if (tipoUsuario === 'mentora') {
-               
                 @if (abaAtiva === 'visao-geral') {
                     <section class="content-section">
                         <div class="metrics-grid" aria-label="Métricas de impacto">
@@ -400,7 +383,7 @@
                                             </label>
                                             <form class="mission-form" (ngSubmit)="adicionarMissao(aluna)">
                                                 <label [for]="'missao-' + aluna.id">Próximo passo</label>
-                                                <div class="mission-input-row">
+                                                <div class="missao-input">
                                                     <input [id]="'missao-' + aluna.id" type="text" [name]="'missao-' + aluna.id" [(ngModel)]="novaMissao[aluna.id]" placeholder="Ex.: Refazer LinkedIn">
                                                     <button type="submit" class="add-mission-button">Adicionar Missão</button>
                                                 </div>
@@ -416,7 +399,7 @@
                                             }
                                         </div>
                                     }
-                                    <a [routerLink]="['/alunas', aluna.id]" class="course-button" style="margin-top: 24px; text-decoration: none; text-align: center;">Analisar Perfil</a>
+                                    <a [routerLink]="['/alunas', aluna.id]" class="curso-button" style="margin-top: 24px; text-decoration: none; text-align: center;">Analisar Perfil</a>
                                 </article>
                             }
                         </div>
@@ -459,14 +442,13 @@
                                     <h3>{{ mentora.nome }}</h3>
                                     <p class="mentor-role">{{ mentora.cargo }}</p>
                                     <p>{{ mentora.empresa }}</p>
-                                    <a class="course-button" [href]="mentora.linkedin" target="_blank" rel="noopener noreferrer">Conectar no LinkedIn</a>
+                                    <a class="curso-button" [href]="mentora.linkedin" target="_blank" rel="noopener noreferrer">Conectar no LinkedIn</a>
                                 </article>
                             }
                         </div>
                     </section>
                 }
             }
-
         </div>
     </div>
 </main>

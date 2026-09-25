@@ -11,20 +11,20 @@ import {
 } from '../models/mentoria.model';
 
 export const TRILHAS_DISPONIVEIS: Trilha[] = [
-  { titulo: 'Introdução à Lógica de Programação', instituicao: 'SENAI Bahia', categoria: 'Tecnologia', status: 'Disponível', slug: 'logica-programacao' },
-  { titulo: 'Preparação para Conferências Internacionais', instituicao: 'Instituto Diplomun', categoria: 'Geopolítica', status: 'Disponível', slug: 'model-un' },
+  { titulo: 'Introdução à Lógica de Programação', instituicao: 'Monitora Attekita', categoria: 'Tecnologia', status: 'Disponível', slug: 'logica-programacao' },
+  { titulo: 'Preparação para Conferências Internacionais', instituicao: 'Instituto Diplomun', categoria: 'Geopolítica', status: 'Disponível', slug: 'conferencias-internacionais' },
   { titulo: 'Fundamentos de Liderança', instituicao: 'Latin American Leadership Academy', categoria: 'Carreira', status: 'Disponível', slug: 'lideranca-empregabilidade' }
 ];
 
 export const NOVIDADES: Novidade[] = [
-  { tag: 'OPORTUNIDADE', data: '22 Out 2026', titulo: 'Inscrições para Harvard MUN', resumo: 'Aplicações abertas para jovens líderes que desejam simular a ONU em Boston.' },
-  { tag: 'TECNOLOGIA', data: '18 Out 2026', titulo: 'Bolsas de Estudo em Programação', resumo: 'O SENAI Bahia abriu 50 novas vagas gratuitas exclusivas para o LideraElas.' }
+  { tag: 'OPORTUNIDADE', data: '22 Out 2026', titulo: 'Inscrições para Harvard MUN', resumo: 'Aplicações abertas para jovens líderes que desejam simular a ONU em Boston.', link: 'https://www.harvardmun.org/' },
+  { tag: 'TECNOLOGIA', data: '18 Out 2026', titulo: 'Bolsas de Estudo em Programação', resumo: 'O SENAI Bahia abriu 50 novas vagas gratuitas exclusivas para o LideraElas.', link: 'https://www.senaibahia.com.br/' }
 ];
 
 export const NOVIDADES_PUBLICAS: Novidade[] = [
-  { tag: 'MERCADO', titulo: 'Mulheres que estão a transformar a indústria', resumo: 'Conheça trajetórias e oportunidades para jovens talentos que querem ocupar espaços de decisão.', data: 'Esta semana' },
-  { tag: 'OPORTUNIDADES', titulo: 'Bolsas e programas globais com inscrições abertas', resumo: 'Uma seleção de iniciativas gratuitas para desenvolver competências e ampliar a sua rede.', data: 'Esta semana' },
-  { tag: 'COMUNIDADE', titulo: 'LideraElas em destaque na próxima conferência', resumo: 'A nossa comunidade prepara novas vozes para representar as Américas em fóruns internacionais.', data: 'Há 3 dias' }
+  { tag: 'MERCADO', titulo: 'Mulheres que estão a transformar a indústria', resumo: 'Conheça trajetórias e oportunidades para jovens talentos que querem ocupar espaços de decisão.', data: 'Esta semana', link: 'https://forbes.com.br/forbes-mulher/' },
+  { tag: 'OPORTUNIDADES', titulo: 'Bolsas e programas globais com inscrições abertas', resumo: 'Uma seleção de iniciativas gratuitas para desenvolver competências e ampliar a sua rede.', data: 'Esta semana', link: 'https://www.estudarfora.org.br/' },
+  { tag: 'COMUNIDADE', titulo: 'LideraElas em destaque na próxima conferência', resumo: 'A nossa comunidade prepara novas vozes para representar as Américas em fóruns internacionais.', data: 'Há 3 dias', link: 'https://www.unwomen.org/' }
 ];
 
 export const MENTORAS_DISPONIVEIS: Mentora[] = [
@@ -78,3 +78,34 @@ export const PROXIMOS_PASSOS = [
   'Completar módulo 1 de Lógica',
   'Analisar 3 perfis no Banco de Mentoras'
 ];
+
+export const PERFIS_ALUNAS: Record<string, any> = {
+  '1': {
+    id: '1',
+    nome: 'Beatriz Silva',
+    iniciais: 'BS',
+    email: 'beatriz.silva@lideraelas.org',
+    nivelEscolaridade: 'Ensino Médio',
+    objetivo: 'Aprender os fundamentos de lógica de programação e criar as suas primeiras soluções tecnológicas.',
+    statusTrilha: 'Trilha de Tecnologia',
+    progresso: '80%',
+    historicoMentorias: [
+      { data: '18 Out 2026', tema: 'Lógica e Algoritmos', notas: 'Aluna muito dedicada, concluiu os primeiros exercícios com facilidade.' }
+    ],
+    proximoEncontro: { tema: 'Revisão de Módulo 1', data: '25 Out 2026', hora: '15:00' }
+  },
+  '2': {
+    id: '2',
+    nome: 'Camila Rocha',
+    iniciais: 'CR',
+    email: 'camila.rocha@lideraelas.org',
+    nivelEscolaridade: 'Ensino Médio',
+    objetivo: 'Preparação avançada para conferências internacionais e técnicas de oratória.',
+    statusTrilha: 'Trilha de Geopolítica',
+    progresso: '45%',
+    historicoMentorias: [
+      { data: '12 Out 2026', tema: 'Posicionamento Diplomático', notas: 'Discutimos técnicas de argumentação para simulações da ONU.' }
+    ],
+    proximoEncontro: { tema: 'Simulação Prática', data: '27 Out 2026', hora: '16:30' }
+  }
+};

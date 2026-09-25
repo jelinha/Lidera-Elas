@@ -57,7 +57,7 @@ export class Dashboard {
   alternarMissaoMentoria(missao: string) { this.mentoriaService.alternarMissao(missao); }
 
   solicitarAgendamento() {
-    this.mensagemFeedback = 'Pedido de agendamento enviado para a tua mentora.';
+    this.mensagemFeedback = 'Pedido de agendamento enviado para a sua mentora.';
     setTimeout(() => this.mensagemFeedback = null, 5000);
   }
 
@@ -82,7 +82,7 @@ export class Dashboard {
   selecionarAba(aba: string) {
     if (aba === 'minha-mentoria' && !this.mentoriaDesbloqueada) {
       this.abaAtiva = 'minhas-solicitacoes';
-      this.mensagemFeedback = 'A tua mentoria será desbloqueada quando uma solicitação for aceite.';
+      this.mensagemFeedback = 'A sua mentoria será desbloqueada quando uma solicitação for aceita.';
       return;
     }
     this.abaAtiva = aba;
@@ -105,14 +105,14 @@ export class Dashboard {
     }
     const solicitacao: SolicitacaoMentoria = { ...mentora, status: 'pendente', criadaEm: new Date().toISOString() };
     this.mentoriaService.adicionarSolicitacao(solicitacao);
-    this.mensagemFeedback = `Solicitação enviada para ${mentora.nome}! Assim que ela aceitar, serás notificada.`;
+    this.mensagemFeedback = `Solicitação enviada para ${mentora.nome}! Assim que ela aceitar, você será notificada.`;
     this.abaAtiva = 'visao-geral';
     setTimeout(() => this.mensagemFeedback = null, 5000);
   }
 
   cancelarSolicitacao(idMentora: number) {
     this.mentoriaService.cancelarSolicitacao(idMentora);
-    this.mensagemFeedback = 'Solicitação cancelada. Já podes procurar outra mentora.';
+    this.mensagemFeedback = 'Solicitação cancelada. Já pode procurar outra mentora.';
   }
 
   atualizarStatusSolicitacao(idMentora: number, status: StatusSolicitacao) {
@@ -121,7 +121,7 @@ export class Dashboard {
 
   agendarReuniao(dados: Reuniao) {
     if (!this.mentoriaService.agendarReuniao(dados)) {
-      this.mensagemFeedback = 'Só podes marcar uma reunião depois de a mentora aceitar a solicitação.';
+      this.mensagemFeedback = 'Você só pode marcar uma reunião depois de a mentora aceitar a solicitação.';
       return;
     }
     this.mensagemFeedback = 'Reunião marcada com sucesso!';

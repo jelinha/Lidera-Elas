@@ -14,7 +14,8 @@
                     </div>
                     <h2>{{ novidade.titulo }}</h2>
                     <p>{{ novidade.resumo }}</p>
-                    <button type="button" class="read-button">Ler novidade</button>
+                    
+                    <a [href]="novidade.link" target="_blank" rel="noopener noreferrer" class="read-button" style="display: block; text-align: center; text-decoration: none; box-sizing: border-box;">Ler novidade</a>
                 </article>
             }
         </div>

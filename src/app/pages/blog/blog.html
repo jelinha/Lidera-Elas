@@ -1,4 +1,4 @@
-<main class="blog-page">
+<div class="blog-page">
     <section class="blog-shell" aria-labelledby="blog-title">
         <a routerLink="/" class="back-link">&larr; Voltar para a página inicial</a>
 
@@ -9,15 +9,21 @@
         </div>
 
         <div class="posts-grid">
-            @for (post of posts; track post.titulo) {
+            @for (post of posts; track post.titulo; let i = $index) {
                 <article class="post-card">
                     <div class="post-accent" aria-hidden="true"></div>
                     <time>{{ post.data }}</time>
                     <h2>{{ post.titulo }}</h2>
                     <p>{{ post.resumo }}</p>
-                    <button type="button" class="read-button">Ler mais <span aria-hidden="true">&rarr;</span></button>
+                    @if (abertos().includes(post.titulo)) {
+                        <p class="post-conteudo" [id]="'post-' + i">{{ post.conteudo }}</p>
+                    }
+                    <button type="button" class="read-button" (click)="alternar(post.titulo)"
+                            [attr.aria-expanded]="abertos().includes(post.titulo)" [attr.aria-controls]="'post-' + i">
+                        {{ abertos().includes(post.titulo) ? 'Mostrar menos' : 'Ler mais' }} <span aria-hidden="true">{{ abertos().includes(post.titulo) ? '↑' : '→' }}</span>
+                    </button>
                 </article>
             }
         </div>
     </section>
-</main>
+</div>

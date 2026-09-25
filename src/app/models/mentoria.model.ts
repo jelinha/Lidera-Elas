@@ -52,6 +52,7 @@ export interface Novidade {
   data: string;
   titulo: string;
   resumo: string;
+  link?: string;
 }
 
 export interface MentoraDaRede {

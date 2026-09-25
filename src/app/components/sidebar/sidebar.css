@@ -52,14 +52,14 @@
     position: relative;
     display: grid;
     gap: 6px;
-    padding: 0 12px 24px 44px; /* Ajuste para não sobrepor o botão */
+    padding: 0 12px 24px 44px; 
     border-bottom: 1px solid var(--border-color);
 }
 
 .sidebar-close {
     position: absolute;
     top: -4px;
-    left: 0; /* Coloca o botão de fechar (X) na esquerda */
+    left: 0; 
     width: 32px;
     height: 32px;
     border: 1px solid var(--border-color);

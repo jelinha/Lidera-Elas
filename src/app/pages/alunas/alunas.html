@@ -1,9 +1,11 @@
-<main class="aluna-page">
+<div class="aluna-page">
     <section class="aluna-shell">
-        <a routerLink="/dashboard" class="back-link">&larr; Voltar para o painel</a>
+        <a routerLink="/dashboard" [queryParams]="{ aba: 'historico-alunas' }" class="back-link">&larr; Voltar para o histórico de alunas</a>
+
+        @if (alunaSelecionada(); as alunaSelecionada) {
 
         <header class="profile-header">
-            <div class="avatar" aria-hidden="true">BS</div>
+            <div class="avatar" aria-hidden="true">{{ alunaSelecionada.iniciais }}</div>
             <div class="profile-heading">
                 <span class="section-tag">PERFIL DA ALUNA</span>
                 <h1>{{ alunaSelecionada.nome }}</h1>
@@ -18,7 +20,7 @@
             <section class="main-column">
                 <article class="detail-card objective-card">
                     <span class="section-tag">OBJETIVO DA MENTORIA</span>
-                    <h2>O que a Beatriz procura</h2>
+                    <h2>O que a {{ primeiroNome() }} procura</h2>
                     <p>{{ alunaSelecionada.objetivo }}</p>
                 </article>
 
@@ -54,7 +56,8 @@
                         <strong>{{ alunaSelecionada.progresso }}</strong>
                         <span>concluído</span>
                     </div>
-                    <div class="progress-track" aria-label="Progresso da trilha">
+                    <div class="progress-track" role="progressbar" aria-label="Progresso da trilha"
+                         aria-valuemin="0" aria-valuemax="100" [attr.aria-valuenow]="alunaSelecionada.progresso.replace('%', '')">
                         <span [style.width]="alunaSelecionada.progresso"></span>
                     </div>
                 </article>
@@ -64,9 +67,15 @@
                     <h2>{{ alunaSelecionada.proximoEncontro.tema }}</h2>
                     <p class="meeting-date">{{ alunaSelecionada.proximoEncontro.data }}</p>
                     <p class="meeting-time">{{ alunaSelecionada.proximoEncontro.hora }}</p>
-                    <button type="button" class="action-button">Marcar Nova Sessão</button>
+                    <a routerLink="/dashboard" [queryParams]="{ aba: 'agenda' }" class="action-button">Ver agenda de encontros</a>
                 </article>
             </aside>
         </div>
+        } @else {
+            <div class="detail-card">
+                <h1>Aluna não encontrada</h1>
+                <p>Não encontramos uma aluna com este identificador. Volte ao histórico e escolha um perfil.</p>
+            </div>
+        }
     </section>
-</main>
+</div>
