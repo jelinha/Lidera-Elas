@@ -163,6 +163,31 @@ h2 {
 
 .password-input {
     position: relative;
+    width: 100%;
+}
+
+.password-input input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 48px 14px 16px; 
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-input);
+    color: var(--text-main);
+    font: inherit;
+}
+.password-input .fa-solid {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.password-input .fa-solid:hover {
+    color: var(--violet-bright);
 }
 
 .auth-form .password-input input {

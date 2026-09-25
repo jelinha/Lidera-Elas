@@ -27,13 +27,13 @@
                 <input id="email" name="email" type="email" autocomplete="email" required>
 
                 <div class="label-row">
-                    <label for="senha">Senha</label>
-                    <a href="#recuperar-senha">Esqueci minha senha</a>
-                </div>
-                <div class="password-input">
-                    <input id="senha" name="senha" [type]="mostrarSenha ? 'text' : 'password'" autocomplete="current-password" required>
-                    <i class="fa-solid" [class.fa-eye]="!mostrarSenha" [class.fa-eye-slash]="mostrarSenha" role="button" tabindex="0" aria-label="Mostrar ou ocultar senha" (click)="toggleSenha()"></i>
-                </div>
+    <label for="senha">Senha</label>
+    <a href="#recuperar-senha">Esqueci minha senha</a>
+</div>
+<div class="password-input">
+    <input id="senha" name="senha" [type]="mostrarSenha ? 'text' : 'password'" autocomplete="current-password" required>
+    <i class="fa-solid" [class.fa-eye]="!mostrarSenha" [class.fa-eye-slash]="mostrarSenha" role="button" tabindex="0" aria-label="Mostrar ou ocultar senha" (click)="toggleSenha()"></i>
+</div>
 
                 <div class="checkbox-group">
                     <input type="checkbox" id="lembrar">
